@@ -1,10 +1,14 @@
 import React from 'react';
-// import axios from 'axios';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Home } from '../Home';
+import { Login } from '../Login';
 
-export const App: React.FC = () => {
-
+export const App = () => {
 
   return (
-    <div>Home Page</div>
+    <BrowserRouter>
+      <Route path='/' exact component={Home} />
+      <Route path="/login" exact component={Login} />
+    </BrowserRouter>
   );
 };
