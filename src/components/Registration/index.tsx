@@ -7,10 +7,8 @@ import {
   Button
 } from '@mui/material';
 import axios from 'axios';
-import Cookies from 'js-cookie';
-import { FERMI_AUTH_TOKEN } from '../../constants';
 
-export const Login: React.FC = () => {
+export const Registration: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,20 +16,18 @@ export const Login: React.FC = () => {
     const email = data.get('email');
     const password = data.get('password');
     
-    interface Login {
-      key: string;
-    }
 
-    const response = await axios.post<Login>(
-      'http://127.0.0.1:8000/dj-rest-auth/login/',
+    const response = await axios.post(
+      'http://127.0.0.1:8000/dj-rest-auth/registration/',
       {
         email,
         username: email,
-        password,
+        password1: password,
+        password2: password,
       },
     );
 
-    Cookies.set(FERMI_AUTH_TOKEN, response.data.key, { secure: true, sameSite: 'lax' });
+    console.log(response);
   };
   
   return (
@@ -45,7 +41,7 @@ export const Login: React.FC = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Log In
+          Register
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -74,7 +70,7 @@ export const Login: React.FC = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Register
           </Button>
         </Box>
       </Box>
