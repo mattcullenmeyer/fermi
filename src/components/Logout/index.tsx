@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { FERMI_AUTH_TOKEN } from '../../constants';
 
 export const Logout: React.FC = () => {
 
@@ -16,8 +17,7 @@ export const Logout: React.FC = () => {
       'http://127.0.0.1:8000/dj-rest-auth/logout/'
     );
 
-    console.log(response);
-    Cookies.remove('auth');
+    Cookies.remove(FERMI_AUTH_TOKEN);
   };
   
   return (

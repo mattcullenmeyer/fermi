@@ -26,8 +26,6 @@ export const Registration: React.FC = () => {
         password2: password,
       },
     );
-
-    console.log(response);
   };
   
   return (
