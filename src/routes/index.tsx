@@ -1,12 +1,10 @@
-import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { Home } from '../Home';
-import { Login } from '../Login';
-import { Logout } from '../Logout';
-import { Registration } from '../Registration';
+import { Home } from '../pages/Home';
+import { Login } from '../pages/Login';
+import { Logout } from '../pages/Logout';
+import { Registration } from '../pages/Registration';
 
-export const App = () => {
-
+export const Routes = () => {
   return (
     <BrowserRouter>
       <Route path='/' exact component={Home} />
@@ -16,3 +14,5 @@ export const App = () => {
     </BrowserRouter>
   );
 };
+
+export default Routes;
