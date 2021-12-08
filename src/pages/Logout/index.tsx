@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { FERMI_AUTH_TOKEN } from '../../constants';
+import { FERMI_AUTH_TOKEN } from '../../constants/cookies';
 
 export const Logout: React.FC = () => {
 
