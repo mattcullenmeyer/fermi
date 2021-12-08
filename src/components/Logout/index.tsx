@@ -13,10 +13,13 @@ import { FERMI_AUTH_TOKEN } from '../../constants';
 export const Logout: React.FC = () => {
 
   const handleClick = async () => { 
-    const response = await axios.post(
-      'http://127.0.0.1:8000/dj-rest-auth/logout/'
-    );
+    const response = await axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/dj-rest-auth/logout/',
+    });
 
+    Cookies.remove('sessionid');
+    Cookies.remove('csrftoken');
     Cookies.remove(FERMI_AUTH_TOKEN);
   };
   

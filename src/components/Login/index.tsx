@@ -7,8 +7,6 @@ import {
   Button
 } from '@mui/material';
 import axios from 'axios';
-import Cookies from 'js-cookie';
-import { FERMI_AUTH_TOKEN } from '../../constants';
 
 export const Login: React.FC = () => {
 
@@ -18,20 +16,23 @@ export const Login: React.FC = () => {
     const email = data.get('email');
     const password = data.get('password');
     
-    interface Login {
-      key: string;
-    }
-
-    const response = await axios.post<Login>(
-      'http://127.0.0.1:8000/dj-rest-auth/login/',
-      {
+    const response = await axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/dj-rest-auth/login/',
+      data: {
         email,
         username: email,
         password,
       },
-    );
+      withCredentials: true,
+    });
 
-    Cookies.set(FERMI_AUTH_TOKEN, response.data.key, { secure: true, sameSite: 'lax' });
+    const resp = await axios({
+      method: 'get',
+      url: 'http://127.0.0.1:8000/user/',
+      withCredentials: true,
+    });
+    console.log(resp);
   };
   
   return (
