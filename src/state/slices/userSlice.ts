@@ -24,7 +24,7 @@ export const fetchUser = createAsyncThunk<
   }
 >('user/fetchUser', async () => {
   const response = await useAxios<User>({
-    pathname: 'user',
+    path: 'user',
     method: RequestTypes.Get,
     withCredentials: true,
   });

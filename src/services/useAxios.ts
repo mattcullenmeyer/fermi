@@ -17,7 +17,7 @@ export interface ResponseBody<T> {
 }
 
 export interface RequestParameters {
-  pathname: string;
+  path: string;
   method: RequestTypes;
   data?: any;
   headers?: any;
@@ -26,7 +26,7 @@ export interface RequestParameters {
 }
 
 export const useAxios = async<T>({
-  pathname,
+  path,
   method,
   data = {},
   headers = {},
@@ -36,7 +36,7 @@ export const useAxios = async<T>({
   try {
     const response = await axios({
       method,
-      url: `${baseUrl}/${pathname}/`,
+      url: `${baseUrl}/${path}/`,
       data,
       headers,
       params,
