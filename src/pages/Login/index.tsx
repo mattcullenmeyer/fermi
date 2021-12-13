@@ -7,8 +7,11 @@ import {
   Button
 } from '@mui/material';
 import axios from 'axios';
+import { useAppDispatch } from '../../state/store';
+import { fetchUser } from '../../state/slices/userSlice';
 
 export const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,12 +30,7 @@ export const Login: React.FC = () => {
       withCredentials: true,
     });
 
-    const resp = await axios({
-      method: 'get',
-      url: 'http://127.0.0.1:8000/user/',
-      withCredentials: true,
-    });
-    console.log(resp);
+    dispatch(fetchUser());
   };
   
   return (
