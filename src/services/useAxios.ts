@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const baseUrl = 'http://127.0.0.1:8000';
+import { API_ENDPOINT } from "../constants/apis";
 
 export enum RequestTypes {
   Get = 'get',
@@ -36,7 +35,7 @@ export const useAxios = async<T>({
   try {
     const response = await axios({
       method,
-      url: `${baseUrl}/${path}/`,
+      url: `${API_ENDPOINT}/${path}/`,
       data,
       headers,
       params,
