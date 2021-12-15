@@ -1,4 +1,5 @@
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Account } from '../pages/Account';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { Logout } from '../pages/Logout';
@@ -11,6 +12,7 @@ export const Routes = () => {
       <Route path="/login" exact component={Login} />
       <Route path="/logout" exact component={Logout} />
       <Route path="/registration" exact component={Registration} />
+      <Route path="/account" exact component={Account} />
     </BrowserRouter>
   );
 };
