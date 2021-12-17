@@ -3,24 +3,29 @@ import {
   Container, 
   Box, 
   Typography,
-  TextField,
   Button
 } from '@mui/material';
-import axios from 'axios';
 import Cookies from 'js-cookie';
-import { FERMI_AUTH_TOKEN } from '../../constants/cookies';
+import { FERMI_ACCESS_TOKEN, FERMI_REFRESH_TOKEN } from '../../constants/cookies';
+import useAxios, { RequestTypes } from '../../services/useAxios';
 
 export const Logout: React.FC = () => {
 
+  const fermiAuthToken = Cookies.get(FERMI_ACCESS_TOKEN);
+
   const handleClick = async () => { 
-    const response = await axios({
-      method: 'post',
-      url: 'http://127.0.0.1:8000/dj-rest-auth/logout/',
+    const response = await useAxios({
+      path: 'dj-rest-auth/logout',
+      method: RequestTypes.Post,
+      headers: {
+        Authorization: `Bearer ${fermiAuthToken}`
+      },
     });
 
-    Cookies.remove('sessionid');
-    Cookies.remove('csrftoken');
-    Cookies.remove(FERMI_AUTH_TOKEN);
+    if (response.status === 200) {
+      Cookies.remove(FERMI_ACCESS_TOKEN);
+      Cookies.remove(FERMI_REFRESH_TOKEN);
+    }
   };
   
   return (

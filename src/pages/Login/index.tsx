@@ -1,4 +1,6 @@
 import React from 'react';
+import Cookies from 'js-cookie';
+// Components
 import { 
   Container, 
   Box, 
@@ -6,9 +8,13 @@ import {
   TextField,
   Button
 } from '@mui/material';
-import axios from 'axios';
+// State
 import { useAppDispatch } from '../../state/store';
 import { fetchUser } from '../../state/slices/userSlice';
+// Services
+import useAxios, { RequestTypes } from '../../services/useAxios';
+// Constants
+import { FERMI_ACCESS_TOKEN, FERMI_REFRESH_TOKEN } from '../../constants/cookies';
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,21 +24,42 @@ export const Login: React.FC = () => {
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
+
+    interface Login {
+      access_token: string;
+      refresh_token: string;
+    }
     
-    const response = await axios({
-      method: 'post',
-      url: 'http://127.0.0.1:8000/dj-rest-auth/login/',
+    const response = await useAxios<Login>({
+      path: 'dj-rest-auth/login',
+      method: RequestTypes.Post,
       data: {
         email,
         username: email,
         password,
       },
-      withCredentials: true,
     });
+    
+    if (response.status === 200 && response.data) {
+      const fermiAccessToken = response.data.access_token;
+      const fermiRefreshToken = response.data.refresh_token;
+      
+      // token expirations must align with backend
+      Cookies.set(FERMI_ACCESS_TOKEN, fermiAccessToken, { 
+        expires: 7,
+        sameSite: 'Lax', 
+        secure: true,
+      });
+      Cookies.set(FERMI_REFRESH_TOKEN, fermiRefreshToken, {
+        expires: 14,
+        sameSite: 'Lax', 
+        secure: true,
+      });
 
-    dispatch(fetchUser());
+      dispatch(fetchUser(fermiAccessToken));
+    }
   };
-  
+
   return (
     <Container>
       <Box
