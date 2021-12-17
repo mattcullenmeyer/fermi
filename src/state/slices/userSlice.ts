@@ -17,16 +17,18 @@ export interface User {
 // https://redux-toolkit.js.org/usage/usage-with-typescript
 export const fetchUser = createAsyncThunk<
   User, 
-  void,
+  string,
   {
     dispatch: AppDispatch;
     state: RootState;
   }
->('user/fetchUser', async () => {
+>('user/fetchUser', async (token) => {
   const response = await useAxios<User>({
     path: 'user',
     method: RequestTypes.Get,
-    withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
   });
 
   if (response.status === 200 && response.data) {
