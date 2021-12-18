@@ -9,7 +9,7 @@ module.exports = {
     filename: "index.bundle.js",
     publicPath: "/"
   },
-  mode: process.env.NODE_ENV || "development",
+  mode: "production",
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
@@ -43,7 +43,7 @@ module.exports = {
       template: path.join(__dirname, "src", "index.html"),
     }),
     new Dotenv({
-      path: './.env.development',
+      path: './environment/.env.prod',
     }),
   ],
 };
