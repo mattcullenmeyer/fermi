@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack serve --open",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --open --config webpack.dev.js",
     "deploy": "aws s3 sync build/ s3://app.tinytrader.io",
+    "cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths \/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
