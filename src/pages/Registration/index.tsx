@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Box, 
@@ -6,9 +6,27 @@ import {
   TextField,
   Button
 } from '@mui/material';
-import axios from 'axios';
+import useAxios, { RequestTypes } from '../../services/useAxios';
 
 export const Registration: React.FC = () => {
+  const [emailErrorMessage, setEmailErrorMessage] = useState<string>('');
+
+  const handleOnEmailBlur = async (event: React.FocusEvent<HTMLInputElement>) => {
+    const email = event.target.value;
+
+    const response = await useAxios({
+      path: `api/v1/signup/email/${email}`,
+      method: RequestTypes.Get,
+    });
+
+    if (response.status === 200) {
+      setEmailErrorMessage('Email already exists');
+    }
+  }
+
+  const handleOnEmailChange = () => {
+    setEmailErrorMessage('');
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -16,16 +34,16 @@ export const Registration: React.FC = () => {
     const email = data.get('email');
     const password = data.get('password');
     
-
-    const response = await axios.post(
-      'http://127.0.0.1:8000/dj-rest-auth/registration/',
-      {
+    const response = await useAxios({
+      path: 'dj-rest-auth/registration',
+      method: RequestTypes.Post,
+      data: {
         email,
         username: email,
         password1: password,
         password2: password,
       },
-    );
+    });
   };
   
   return (
@@ -51,6 +69,10 @@ export const Registration: React.FC = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleOnEmailChange}
+            onBlur={handleOnEmailBlur}
+            error={emailErrorMessage ? true : false}
+            helperText={emailErrorMessage}
           />
           <TextField
             margin="normal"

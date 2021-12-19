@@ -24,7 +24,7 @@ export const fetchUser = createAsyncThunk<
   }
 >('user/fetchUser', async (token) => {
   const response = await useAxios<User>({
-    path: 'user',
+    path: 'api/v1/user/detail',
     method: RequestTypes.Get,
     headers: {
       Authorization: `Bearer ${token}`
