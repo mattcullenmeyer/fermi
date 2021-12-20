@@ -24,15 +24,15 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleOnEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   }
 
-  const handleOnPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrorMessage('');
 
@@ -77,7 +77,7 @@ export const Login: React.FC = () => {
         <Typography component="h1" variant="h5">
           Log In
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
           {errorMessage && (
             <Alert severity="error" sx={{ mt: 2, mb: 1 }}>{errorMessage}</Alert>
           )}
@@ -91,7 +91,7 @@ export const Login: React.FC = () => {
             autoComplete="email"
             autoFocus
             value={email}
-            onChange={handleOnEmailChange}
+            onChange={onEmailChange}
           />
           <TextField
             margin="normal"
@@ -103,7 +103,7 @@ export const Login: React.FC = () => {
             id="password"
             autoComplete="current-password"
             value={password}
-            onChange={handleOnPasswordChange}
+            onChange={onPasswordChange}
           />
           <Button
             type="submit"

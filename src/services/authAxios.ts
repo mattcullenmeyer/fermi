@@ -14,10 +14,10 @@ export const authAxios = async<T> ({
     method,
     path,
     data,
+    params,
     headers: {
       Authorization: `Bearer ${fermiAuthToken}`
     },
-    params,
   });
   return response;
 };

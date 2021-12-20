@@ -13,7 +13,7 @@ import { userLogout } from '../../services/userLogout';
 import { FERMI_ACCESS_TOKEN, FERMI_REFRESH_TOKEN } from '../../constants/cookies';
 
 export const Logout: React.FC = () => {
-  const handleClick = async () => { 
+  const onButtonClick = async () => { 
     const response = await userLogout();
 
     if (response.status === 200) {
@@ -37,7 +37,7 @@ export const Logout: React.FC = () => {
         </Typography>
         
         <Button
-          onClick={handleClick}
+          onClick={onButtonClick}
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >

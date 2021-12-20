@@ -20,17 +20,17 @@ export const Signup: React.FC = () => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  const handleOnEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
     setEmailErrorMessage('');
   }
 
-  const handleOnPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
+  const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     setPasswordErrorMessage('');
   }
 
-  const handleOnEmailBlur = async () => {
+  const onEmailBlur = async () => {
     if (!isEmail(email)) {
       setEmailErrorMessage(words.invalidEmail);
       return;
@@ -46,7 +46,7 @@ export const Signup: React.FC = () => {
     }
   }
 
-  const handleOnPasswordBlur = () => {
+  const onPasswordBlur = () => {
     if (password.length < 10) {
       setPasswordErrorMessage(words.invalidPassword)
     }
@@ -86,8 +86,8 @@ export const Signup: React.FC = () => {
             autoComplete="email"
             autoFocus
             value={email}
-            onChange={handleOnEmailChange}
-            onBlur={handleOnEmailBlur}
+            onChange={onEmailChange}
+            onBlur={onEmailBlur}
             error={emailErrorMessage ? true : false}
             helperText={emailErrorMessage}
           />
@@ -101,8 +101,8 @@ export const Signup: React.FC = () => {
             type="password"
             autoComplete="current-password"
             value={password}
-            onChange={handleOnPasswordChange}
-            onBlur={handleOnPasswordBlur}
+            onChange={onPasswordChange}
+            onBlur={onPasswordBlur}
             error={passwordErrorMessage ? true : false}
             helperText={passwordErrorMessage}
           />
