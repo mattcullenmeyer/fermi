@@ -21,7 +21,6 @@ export interface RequestParameters {
   data?: any;
   headers?: any;
   params?: any;
-  withCredentials?: boolean;
 }
 
 export const useAxios = async<T>({
@@ -30,7 +29,6 @@ export const useAxios = async<T>({
   data = {},
   headers = {},
   params = {},
-  withCredentials = false,
 }: RequestParameters): Promise<ResponseBody<T>> => {
   try {
     const response = await axios({
@@ -39,7 +37,6 @@ export const useAxios = async<T>({
       data,
       headers,
       params,
-      withCredentials, 
     });
     return {
       status: response.status,

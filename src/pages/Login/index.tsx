@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 // Components
 import { 
@@ -6,38 +6,40 @@ import {
   Box, 
   Typography,
   TextField,
-  Button
+  Button,
+  Alert
 } from '@mui/material';
 // State
 import { useAppDispatch } from '../../state/store';
 import { fetchUser } from '../../state/slices/userSlice';
 // Services
-import useAxios, { RequestTypes } from '../../services/useAxios';
+import { userLogin } from '../../services/userLogin';
 // Constants
 import { FERMI_ACCESS_TOKEN, FERMI_REFRESH_TOKEN } from '../../constants/cookies';
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-    interface Login {
-      access_token: string;
-      refresh_token: string;
-    }
-    
-    const response = await useAxios<Login>({
-      path: 'dj-rest-auth/login',
-      method: RequestTypes.Post,
-      data: {
-        email,
-        username: email,
-        password,
-      },
+  const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setErrorMessage('');
+
+    const response = await userLogin({
+      email,
+      username: email,
+      password,
     });
     
     if (response.status === 200 && response.data) {
@@ -56,7 +58,9 @@ export const Login: React.FC = () => {
         secure: true,
       });
 
-      dispatch(fetchUser(fermiAccessToken));
+      dispatch(fetchUser());
+    } else {
+      setErrorMessage('Your email address or password is invalid.')
     }
   };
 
@@ -73,7 +77,10 @@ export const Login: React.FC = () => {
         <Typography component="h1" variant="h5">
           Log In
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
+          {errorMessage && (
+            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>{errorMessage}</Alert>
+          )}
           <TextField
             margin="normal"
             required
@@ -83,6 +90,8 @@ export const Login: React.FC = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={onEmailChange}
           />
           <TextField
             margin="normal"
@@ -93,6 +102,8 @@ export const Login: React.FC = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={onPasswordChange}
           />
           <Button
             type="submit"
@@ -100,7 +111,7 @@ export const Login: React.FC = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Log In
           </Button>
         </Box>
       </Box>
