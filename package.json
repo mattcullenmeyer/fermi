@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js",
     "deploy": "aws s3 sync build/ s3://app.tinytrader.io",
-    "cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths \/*",
+    "cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths /*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.20",
     "@types/react-router-dom": "^5.3.2",
+    "@types/validator": "^13.7.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "dotenv-webpack": "^7.0.3",
@@ -51,6 +52,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^5.3.0"
+    "react-router-dom": "^5.3.0",
+    "validator": "^13.7.0"
   }
 }

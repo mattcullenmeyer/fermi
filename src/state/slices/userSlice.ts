@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../store';
 import { RequestStatus } from '../requestStatusTypes';
-import { useAxios, RequestTypes } from '../../services/useAxios';
+import { RequestTypes } from '../../services/useAxios';
+import { authAxios } from '../../services/authAxios';
 
 const errorMessage = 'Failed to fetch user data';
 
@@ -17,18 +18,15 @@ export interface User {
 // https://redux-toolkit.js.org/usage/usage-with-typescript
 export const fetchUser = createAsyncThunk<
   User, 
-  string,
+  void,
   {
     dispatch: AppDispatch;
     state: RootState;
   }
->('user/fetchUser', async (token) => {
-  const response = await useAxios<User>({
+>('user/fetchUser', async () => {
+  const response = await authAxios<User>({
     path: 'api/v1/user/detail',
     method: RequestTypes.Get,
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
   });
 
   if (response.status === 200 && response.data) {

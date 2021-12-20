@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import isEmail from 'validator/lib/isEmail';
+// Components
 import { 
   Container, 
   Box, 
@@ -6,13 +8,33 @@ import {
   TextField,
   Button
 } from '@mui/material';
+// Services
 import useAxios, { RequestTypes } from '../../services/useAxios';
+import { userSignup } from '../../services/userSignup';
+// Words
+import { words } from './words';
 
-export const Registration: React.FC = () => {
-  const [emailErrorMessage, setEmailErrorMessage] = useState<string>('');
+export const Signup: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-  const handleOnEmailBlur = async (event: React.FocusEvent<HTMLInputElement>) => {
-    const email = event.target.value;
+  const handleOnEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    setEmailErrorMessage('');
+  }
+
+  const handleOnPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    setPasswordErrorMessage('');
+  }
+
+  const handleOnEmailBlur = async () => {
+    if (!isEmail(email)) {
+      setEmailErrorMessage(words.invalidEmail);
+      return;
+    }
 
     const response = await useAxios({
       path: `api/v1/signup/email/${email}`,
@@ -20,29 +42,23 @@ export const Registration: React.FC = () => {
     });
 
     if (response.status === 200) {
-      setEmailErrorMessage('Email already exists');
+      setEmailErrorMessage(words.emailUnavailable);
     }
   }
 
-  const handleOnEmailChange = () => {
-    setEmailErrorMessage('');
+  const handleOnPasswordBlur = () => {
+    if (password.length < 10) {
+      setPasswordErrorMessage(words.invalidPassword)
+    }
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
     
-    const response = await useAxios({
-      path: 'dj-rest-auth/registration',
-      method: RequestTypes.Post,
-      data: {
-        email,
-        username: email,
-        password1: password,
-        password2: password,
-      },
+    const response = await userSignup({
+      email,
+      username: email,
+      password,
     });
   };
   
@@ -57,7 +73,7 @@ export const Registration: React.FC = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Register
+          {words.header}
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -69,6 +85,7 @@ export const Registration: React.FC = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
             onChange={handleOnEmailChange}
             onBlur={handleOnEmailBlur}
             error={emailErrorMessage ? true : false}
@@ -78,22 +95,30 @@ export const Registration: React.FC = () => {
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
             id="password"
+            label="Password"
+            name="password"
+            type="password"
             autoComplete="current-password"
+            value={password}
+            onChange={handleOnPasswordChange}
+            onBlur={handleOnPasswordBlur}
+            error={passwordErrorMessage ? true : false}
+            helperText={passwordErrorMessage}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={emailErrorMessage || passwordErrorMessage ? true : false}
           >
-            Register
+            {words.createAccount}
           </Button>
         </Box>
       </Box>
     </Container>
   );
 };
+
+export default Signup;

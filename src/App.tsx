@@ -12,7 +12,7 @@ export const App = () => {
 
   useEffect(() => {
     if (fermiAuthToken) {
-      dispatch(fetchUser(fermiAuthToken));
+      dispatch(fetchUser());
     }
   }, []);
 

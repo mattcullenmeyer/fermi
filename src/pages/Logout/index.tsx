@@ -1,26 +1,20 @@
 import React from 'react';
+import Cookies from 'js-cookie';
+// Components
 import { 
   Container, 
   Box, 
   Typography,
   Button
 } from '@mui/material';
-import Cookies from 'js-cookie';
+// Services
+import { userLogout } from '../../services/userLogout';
+// Constants
 import { FERMI_ACCESS_TOKEN, FERMI_REFRESH_TOKEN } from '../../constants/cookies';
-import useAxios, { RequestTypes } from '../../services/useAxios';
 
 export const Logout: React.FC = () => {
-
-  const fermiAuthToken = Cookies.get(FERMI_ACCESS_TOKEN);
-
   const handleClick = async () => { 
-    const response = await useAxios({
-      path: 'dj-rest-auth/logout',
-      method: RequestTypes.Post,
-      headers: {
-        Authorization: `Bearer ${fermiAuthToken}`
-      },
-    });
+    const response = await userLogout();
 
     if (response.status === 200) {
       Cookies.remove(FERMI_ACCESS_TOKEN);
