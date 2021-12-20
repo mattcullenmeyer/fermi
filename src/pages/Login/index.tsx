@@ -26,11 +26,11 @@ export const Login: React.FC = () => {
 
   const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-  }
+  };
 
   const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-  }
+  };
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -23,12 +23,12 @@ export const Signup: React.FC = () => {
   const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
     setEmailErrorMessage('');
-  }
+  };
 
   const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     setPasswordErrorMessage('');
-  }
+  };
 
   const onEmailBlur = async () => {
     if (!isEmail(email)) {
@@ -44,13 +44,13 @@ export const Signup: React.FC = () => {
     if (response.status === 200) {
       setEmailErrorMessage(words.emailUnavailable);
     }
-  }
+  };
 
   const onPasswordBlur = () => {
     if (password.length < 10) {
       setPasswordErrorMessage(words.invalidPassword)
     }
-  }
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
