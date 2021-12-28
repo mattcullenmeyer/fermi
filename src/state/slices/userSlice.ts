@@ -25,7 +25,7 @@ export const fetchUser = createAsyncThunk<
   }
 >('user/fetchUser', async () => {
   const response = await authAxios<User>({
-    path: 'api/v1/user/detail',
+    path: 'user/detail',
     method: RequestTypes.Get,
   });
 

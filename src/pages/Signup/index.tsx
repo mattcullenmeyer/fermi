@@ -37,7 +37,7 @@ export const Signup: React.FC = () => {
     }
 
     const response = await useAxios({
-      path: `api/v1/signup/email/${email}`,
+      path: `signup/email/${email}`,
       method: RequestTypes.Get,
     });
 

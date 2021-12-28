@@ -17,7 +17,7 @@ export const userLogin = async ({
   password,
 }: LoginParameters): Promise<ResponseBody<LoginData>> => {
   const response = await useAxios<LoginData>({
-    path: 'dj-rest-auth/login',
+    path: 'login',
     method: RequestTypes.Post,
     data: {
       email,

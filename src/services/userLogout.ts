@@ -7,7 +7,7 @@ export interface LogoutData {
 
 export const userLogout = async (): Promise<ResponseBody<LogoutData>> => {
   const response = await authAxios<LogoutData>({
-    path: 'dj-rest-auth/logout',
+    path: 'logout',
     method: RequestTypes.Post,
   });
 
