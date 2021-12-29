@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
 // Components
 import { 
   Container, 
@@ -14,8 +13,8 @@ import { useAppDispatch } from '../../state/store';
 import { fetchUser } from '../../state/slices/userSlice';
 // Services
 import { userLogin } from '../../services/userLogin';
-// Constants
-import { FERMI_ACCESS_TOKEN, FERMI_REFRESH_TOKEN } from '../../constants/cookies';
+// Utils
+import { setAuthCookies } from '../../utils/setAuthCookies';
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -43,24 +42,10 @@ export const Login: React.FC = () => {
     });
     
     if (response.status === 200 && response.data) {
-      const fermiAccessToken = response.data.access_token;
-      const fermiRefreshToken = response.data.refresh_token;
-      
-      // token expirations must align with backend
-      Cookies.set(FERMI_ACCESS_TOKEN, fermiAccessToken, { 
-        expires: 7,
-        sameSite: 'Lax', 
-        secure: true,
-      });
-      Cookies.set(FERMI_REFRESH_TOKEN, fermiRefreshToken, {
-        expires: 14,
-        sameSite: 'Lax', 
-        secure: true,
-      });
-
+      setAuthCookies(response.data);
       dispatch(fetchUser());
     } else {
-      setErrorMessage('Your email address or password is invalid.')
+      setErrorMessage('Your email address or password is invalid.');
     }
   };
 
