@@ -17,6 +17,8 @@ export const Logout: React.FC = () => {
 
     if (response.status === 200) {
       removeAuthCookies();
+    } else {
+      console.error('Failed to log out user.');
     }
   };
   
