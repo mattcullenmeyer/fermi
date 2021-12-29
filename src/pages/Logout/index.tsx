@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // Components
 import { 
   Container, 
@@ -6,19 +6,25 @@ import {
   Typography,
   Button
 } from '@mui/material';
-// Services
-import { userLogout } from '../../services/userLogout';
+// State
+import { RootState, useAppDispatch, useAppSelector } from '../../state/store';
+import { resetUser } from '../../state/slices/userSlice';
 // Utils
 import { removeAuthCookies } from '../../utils/removeAuthCookies';
 
 export const Logout: React.FC = () => {
-  const onButtonClick = async () => { 
-    const response = await userLogout();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state: RootState) => state.user);
 
-    if (response.status === 200) {
-      removeAuthCookies();
-    }
+  const onButtonClick = () => { 
+    dispatch(resetUser());
   };
+
+  useEffect(() => {
+    if (user.isUserReset) {
+      removeAuthCookies();
+    };
+  }, [user]);
   
   return (
     <Container>
