@@ -1,9 +1,5 @@
 import { RequestTypes, ResponseBody, useAxios } from './useAxios';
-
-export interface LoginData {
-  access_token: string;
-  refresh_token: string;
-}
+import { DjRestAuthData } from '../types/authentication';
 
 export interface LoginParameters {
   email: string;
@@ -15,8 +11,8 @@ export const userLogin = async ({
   email,
   username,
   password,
-}: LoginParameters): Promise<ResponseBody<LoginData>> => {
-  const response = await useAxios<LoginData>({
+}: LoginParameters): Promise<ResponseBody<DjRestAuthData>> => {
+  const response = await useAxios<DjRestAuthData>({
     path: 'login',
     method: RequestTypes.Post,
     data: {

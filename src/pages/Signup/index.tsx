@@ -8,13 +8,20 @@ import {
   TextField,
   Button
 } from '@mui/material';
+// State
+import { useAppDispatch } from '../../state/store';
+import { fetchUser } from '../../state/slices/userSlice';
 // Services
 import useAxios, { RequestTypes } from '../../services/useAxios';
 import { userSignup } from '../../services/userSignup';
+// Utils
+import { setAuthCookies } from '../../utils/setAuthCookies';
 // Words
 import { words } from './words';
 
 export const Signup: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
@@ -52,7 +59,7 @@ export const Signup: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     const response = await userSignup({
@@ -60,6 +67,13 @@ export const Signup: React.FC = () => {
       username: email,
       password,
     });
+
+    if (response.status === 200 && response.data) {
+      setAuthCookies(response.data);
+      dispatch(fetchUser());
+    } else {
+      console.error('Failed to sign up user.');
+    }
   };
   
   return (
@@ -75,7 +89,7 @@ export const Signup: React.FC = () => {
         <Typography component="h1" variant="h5">
           {words.header}
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required

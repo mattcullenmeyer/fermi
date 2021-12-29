@@ -1,9 +1,5 @@
 import { RequestTypes, ResponseBody, useAxios } from './useAxios';
-
-export interface SignupData {
-  access_token: string;
-  refresh_token: string;
-}
+import { DjRestAuthData } from '../types/authentication';
 
 export interface SignupParameters {
   email: string;
@@ -15,8 +11,8 @@ export const userSignup = async ({
   email,
   username,
   password,
-}: SignupParameters): Promise<ResponseBody<SignupData>> => {
-  const response = await useAxios<SignupData>({
+}: SignupParameters): Promise<ResponseBody<DjRestAuthData>> => {
+  const response = await useAxios<DjRestAuthData>({
     path: 'signup',
     method: RequestTypes.Post,
     data: {
