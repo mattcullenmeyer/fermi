@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
 // Components
 import { 
   Container, 
@@ -9,14 +10,31 @@ import {
 // State
 import { RootState, useAppDispatch, useAppSelector } from '../../state/store';
 import { resetUser } from '../../state/slices/userSlice';
+// Services
+import { tokenRefresh } from '../../services/tokenRefresh';
 // Utils
 import { removeAuthCookies } from '../../utils/removeAuthCookies';
+import { setAuthCookies } from '../../utils/setAuthCookies';
+// Constants
+import { FERMI_ACCESS_TOKEN } from '../../constants/cookies';
 
 export const Logout: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state: RootState) => state.user);
 
-  const onButtonClick = () => { 
+  const onButtonClick = async () => { 
+    const fermiAccessToken = Cookies.get(FERMI_ACCESS_TOKEN);
+
+    if (!fermiAccessToken) {
+      const response = await tokenRefresh();
+
+      if (response.status === 200 && response.data) {
+        setAuthCookies(response.data);
+      } else {
+        console.error('Failed to refresh authorization token.');
+      }
+    }
+    
     dispatch(resetUser());
   };
 
