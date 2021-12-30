@@ -7,15 +7,18 @@ export const setAuthCookies = (
 ) => {
   const fermiAccessToken = data.access_token;
   const fermiRefreshToken = data.refresh_token;
+
+  const inOneHour = 1/24;
+  const inTwoWeeks = 14;
   
   // Token expirations must align with backend
   Cookies.set(FERMI_ACCESS_TOKEN, fermiAccessToken, { 
-    expires: 7,
+    expires: inOneHour,
     sameSite: 'Lax', 
     secure: true,
   });
   Cookies.set(FERMI_REFRESH_TOKEN, fermiRefreshToken, {
-    expires: 14,
+    expires: inTwoWeeks,
     sameSite: 'Lax', 
     secure: true,
   });

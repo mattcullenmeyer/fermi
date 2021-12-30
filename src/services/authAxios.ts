@@ -1,6 +1,11 @@
 import Cookies from 'js-cookie';
-import { FERMI_ACCESS_TOKEN } from '../constants/cookies';
+// Services
+import { tokenRefresh } from './tokenRefresh';
 import { useAxios, RequestParameters, ResponseBody } from './useAxios';
+// Utils
+import { setAuthCookies } from '../utils/setAuthCookies';
+// Constants
+import { FERMI_ACCESS_TOKEN } from '../constants/cookies';
 
 export const authAxios = async<T> ({
   path,
@@ -8,7 +13,18 @@ export const authAxios = async<T> ({
   data = {},
   params = {},
 }: Omit<RequestParameters, 'headers'>): Promise<ResponseBody<T>> => {
-  const fermiAuthToken = Cookies.get(FERMI_ACCESS_TOKEN); 
+  let fermiAccessToken = Cookies.get(FERMI_ACCESS_TOKEN); 
+
+  if (!fermiAccessToken) {
+    const tokenRefreshResponse = await tokenRefresh();
+
+    if (tokenRefreshResponse.status === 200 && tokenRefreshResponse.data) {
+      setAuthCookies(tokenRefreshResponse.data);
+      fermiAccessToken = Cookies.get(FERMI_ACCESS_TOKEN); 
+    } else {
+      console.error('Failed to refresh authorization token.')
+    }
+  }
   
   const response = await useAxios<T>({
     method,
@@ -16,7 +32,7 @@ export const authAxios = async<T> ({
     data,
     params,
     headers: {
-      Authorization: `Bearer ${fermiAuthToken}`
+      Authorization: `Bearer ${fermiAccessToken}`
     },
   });
   return response;
