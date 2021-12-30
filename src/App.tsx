@@ -7,7 +7,6 @@ import { FERMI_REFRESH_TOKEN } from './constants/cookies';
 
 export const App = () => {
   const dispatch = useAppDispatch();
-
   const fermiRefreshToken = Cookies.get(FERMI_REFRESH_TOKEN);
 
   useEffect(() => {
