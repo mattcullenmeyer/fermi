@@ -10,7 +10,7 @@
     "cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths /*",
     "test": "jest",
     "prepare": "husky install",
-    "lint": "eslint .",
+    "lint": "lint-stage",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
@@ -50,6 +50,7 @@
     "husky": "^7.0.4",
     "image-webpack-loader": "^7.0.1",
     "jest": "^27.4.7",
+    "lint-staged": "^12.3.3",
     "node-sass": "^6.0.1",
     "path": "^0.12.7",
     "prettier": "^2.5.1",

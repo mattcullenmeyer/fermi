@@ -1,12 +1,12 @@
 import React from 'react';
 // Components
-import { 
-  Container, 
-  Box, 
+import {
+  Container,
+  Box,
   Typography,
   TextField,
   Button,
-  Alert
+  Alert,
 } from '@mui/material';
 import { words } from './words';
 
@@ -44,7 +44,9 @@ export const Login: React.FC<LoginProps> = ({
         </Typography>
         <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
           {errorMessage && (
-            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>{errorMessage}</Alert>
+            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>
+              {errorMessage}
+            </Alert>
           )}
           <TextField
             margin="normal"

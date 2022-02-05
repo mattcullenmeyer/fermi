@@ -14,10 +14,12 @@ const defaultProps = {
   onFormSubmit: () => {},
 };
 
-describe('Login', () => { 
-  it('should call onFormSubmit when clicking Log In', () => {
+describe('Login', () => {
+  it('should call onFormSubmit when Log In is clicked', () => {
     const onFormSubmit = jest.fn();
-    const { getByRole } = render(<Login {...defaultProps} onFormSubmit={onFormSubmit} />);
+    const { getByRole } = render(
+      <Login {...defaultProps} onFormSubmit={onFormSubmit} />
+    );
 
     fireEvent.click(getByRole('button', { name: loginButton }));
     expect(onFormSubmit).toHaveBeenCalled();

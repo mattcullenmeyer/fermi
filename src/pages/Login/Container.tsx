@@ -33,7 +33,7 @@ export const LoginContainer = () => {
       username: email,
       password,
     });
-    
+
     if (response.status === 200 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
@@ -43,7 +43,7 @@ export const LoginContainer = () => {
   };
 
   return (
-    <Login 
+    <Login
       email={email}
       password={password}
       errorMessage={errorMessage}
