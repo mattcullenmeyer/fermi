@@ -72,7 +72,8 @@ export const Login: React.FC<LoginProps> = ({
             value={password}
             onChange={onPasswordChange}
           />
-          <Button type="submit"
+          <Button
+            type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
