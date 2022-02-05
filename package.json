@@ -10,9 +10,12 @@
     "cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths /*",
     "test": "jest",
     "prepare": "husky install",
-    "lint": "lint-stage",
-    "lint:fix": "eslint --fix",
+    "lint": "lint-staged",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": "eslint --fix",
+    "*.+(json|css|md)": "prettier --write"
   },
   "keywords": [],
   "author": "",
