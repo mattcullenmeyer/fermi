@@ -16,7 +16,7 @@ const defaultProps = {
 
 describe('Login', () => {
   it('should call onFormSubmit when Log In is clicked', () => {
-    const onFormSubmit = jest.fn();
+    const onFormSubmit = jest.fn((event) => event.preventDefault());
     const { getByRole } = render(
       <Login {...defaultProps} onFormSubmit={onFormSubmit} />
     );
