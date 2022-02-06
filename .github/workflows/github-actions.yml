@@ -3,7 +3,7 @@ name: fermi
 on: [ pull_request ]
 
 jobs:
-  unit-tests:
+  jest-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
