@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 // Components
 import { Login } from './index';
 // State
@@ -11,6 +12,8 @@ import { setAuthCookies } from '../../utils/setAuthCookies';
 
 export const LoginContainer = () => {
   const dispatch = useAppDispatch();
+
+  const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +40,7 @@ export const LoginContainer = () => {
     if (response.status === 200 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
+      history.push('/');
     } else {
       setErrorMessage('Your email address or password is invalid.');
     }
