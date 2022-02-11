@@ -9,6 +9,6 @@ describe('Login', () => {
 
     cy.get('button[type=submit]').click();
 
-    cy.url().should('equal', Cypress.config().baseUrl);
+    cy.url().should('equal', `${Cypress.config().baseUrl}/`);
   });
 });
