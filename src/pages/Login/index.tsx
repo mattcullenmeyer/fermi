@@ -59,6 +59,9 @@ export const Login: React.FC<LoginProps> = ({
             autoFocus
             value={email}
             onChange={onEmailChange}
+            inputProps={{
+              'data-testid': 'emailTextField',
+            }}
           />
           <TextField
             margin="normal"
@@ -71,6 +74,9 @@ export const Login: React.FC<LoginProps> = ({
             autoComplete="current-password"
             value={password}
             onChange={onPasswordChange}
+            inputProps={{
+              'data-testid': 'passwordTextField',
+            }}
           />
           <Button
             type="submit"

@@ -1,47 +1,24 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {
+  entry,
+  output,
+  resolve,
+  moduleRules,
+  devServer,
+  plugins,
+} = require("./webpack.config.js");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: path.join(__dirname, "src", "index.tsx"),
-  output: { 
-    path: path.join(__dirname, "build"), 
-    filename: "index.bundle.js",
-    publicPath: "/"
-  },
+  entry,
+  output,
   mode: "production",
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  },
+  resolve,
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: ["ts-loader"],
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      { 
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ["file-loader"] 
-      },
-    ],
+    rules: moduleRules,
   },
-  devServer: {
-    historyApiFallback: true,
-  },
+  devServer,
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
-    }),
+    ...plugins,
     new Dotenv({
       path: './environment/.env.prod',
     }),
