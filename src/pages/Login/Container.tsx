@@ -7,12 +7,13 @@ import { useAppDispatch } from '../../state/store';
 import { fetchUser } from '../../state/slices/userSlice';
 // Services
 import { userLogin } from '../../services/userLogin';
+// Words
+import { words } from './words';
 // Utils
 import { setAuthCookies } from '../../utils/setAuthCookies';
 
 export const LoginContainer = () => {
   const dispatch = useAppDispatch();
-
   const history = useHistory();
 
   const [email, setEmail] = useState('');
@@ -42,7 +43,7 @@ export const LoginContainer = () => {
       dispatch(fetchUser());
       history.push('/');
     } else {
-      setErrorMessage('Your email address or password is invalid.');
+      setErrorMessage(words.errorMessage);
     }
   };
 

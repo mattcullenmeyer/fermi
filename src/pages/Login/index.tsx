@@ -12,7 +12,7 @@ import { words } from './words';
 
 const { heading, loginButton } = words;
 
-interface LoginProps {
+export interface LoginProps {
   email: string;
   password: string;
   errorMessage: string;
