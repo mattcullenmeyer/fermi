@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Login, LoginProps } from './index';
+import { words } from './words';
 
 export default {
   title: 'Login',
@@ -21,4 +22,10 @@ const defaultProps: LoginProps = {
 export const Default = Template.bind({});
 Default.args = {
   ...defaultProps,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  ...defaultProps,
+  errorMessage: words.errorMessage,
 };
