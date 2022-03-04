@@ -5,13 +5,13 @@ const {
   moduleRules,
   devServer,
   plugins,
-} = require('./webpack.config.js');
-const Dotenv = require('dotenv-webpack');
+} = require("./webpack.config.js");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry,
   output,
-  mode: 'production',
+  mode: "production",
   resolve,
   module: {
     rules: moduleRules,
@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     ...plugins,
     new Dotenv({
-      path: './environment/.env.prod',
+      path: "./environment/.env.prod",
     }),
   ],
 };
