@@ -31,8 +31,10 @@ export const CryptoContainer: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    getCrypto(coin);
-  }, [location]);
+    if (coin) {
+      getCrypto(coin);
+    }
+  }, [location, coin]);
 
   useEffect(() => {
     if (cryptoData) {
@@ -61,6 +63,10 @@ export const CryptoContainer: React.FC = () => {
       setCryptoPrices(response.data);
     }
   };
+
+  if (!cryptoPrices) {
+    return <></>;
+  }
 
   return <Crypto cryptoPrices={cryptoPrices} />;
 };
