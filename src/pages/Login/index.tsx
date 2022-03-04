@@ -1,54 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Components
-import { 
-  Container, 
-  Box, 
+import {
+  Container,
+  Box,
   Typography,
   TextField,
   Button,
-  Alert
+  Alert,
 } from '@mui/material';
-// State
-import { useAppDispatch } from '../../state/store';
-import { fetchUser } from '../../state/slices/userSlice';
-// Services
-import { userLogin } from '../../services/userLogin';
-// Utils
-import { setAuthCookies } from '../../utils/setAuthCookies';
+import { words } from './words';
 
-export const Login: React.FC = () => {
-  const dispatch = useAppDispatch();
+const { heading, loginButton } = words;
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+export interface LoginProps {
+  email: string;
+  password: string;
+  errorMessage: string;
+  onEmailChange: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onPasswordChange: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
 
-  const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setErrorMessage('');
-
-    const response = await userLogin({
-      email,
-      username: email,
-      password,
-    });
-    
-    if (response.status === 200 && response.data) {
-      setAuthCookies(response.data);
-      dispatch(fetchUser());
-    } else {
-      setErrorMessage('Your email address or password is invalid.');
-    }
-  };
-
+export const Login: React.FC<LoginProps> = ({
+  email,
+  password,
+  errorMessage,
+  onEmailChange,
+  onPasswordChange,
+  onFormSubmit,
+}) => {
   return (
     <Container>
       <Box
@@ -60,11 +40,13 @@ export const Login: React.FC = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Log In
+          {heading}
         </Typography>
         <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
           {errorMessage && (
-            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>{errorMessage}</Alert>
+            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>
+              {errorMessage}
+            </Alert>
           )}
           <TextField
             margin="normal"
@@ -77,6 +59,9 @@ export const Login: React.FC = () => {
             autoFocus
             value={email}
             onChange={onEmailChange}
+            inputProps={{
+              'data-testid': 'emailTextField',
+            }}
           />
           <TextField
             margin="normal"
@@ -89,6 +74,9 @@ export const Login: React.FC = () => {
             autoComplete="current-password"
             value={password}
             onChange={onPasswordChange}
+            inputProps={{
+              'data-testid': 'passwordTextField',
+            }}
           />
           <Button
             type="submit"
@@ -96,7 +84,7 @@ export const Login: React.FC = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Log In
+            {loginButton}
           </Button>
         </Box>
       </Box>

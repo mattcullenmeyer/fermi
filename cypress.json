@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://app.staging.tinytrader.io",
+  "defaultCommandTimeout": 10000,
+  "retries": {
+    "runMode": 2
+  },
+  "video": false
+}
