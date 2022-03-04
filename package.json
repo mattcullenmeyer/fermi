@@ -19,8 +19,8 @@
     "build-storybook": "build-storybook"
   },
   "lint-staged": {
-    "src/**/*.(js,jsx,ts,tsx)": "eslint --fix",
-    "*.{js,jsx,ts,tsx,json}": "prettier --write"
+    "*.{js,jsx,ts,tsx,json}": "prettier --write",
+    "src/**/*.(js,jsx,ts,tsx)": "eslint --fix"
   },
   "keywords": [],
   "author": "",
