@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Crypto from './index';
 import { useParams, useLocation } from 'react-router-dom';
-import useAxios, { RequestTypes } from '../../services/useAxios';
+// Components
+import Crypto from './index';
+// Services
+import { useAxios, RequestTypes } from '../../services/useAxios';
 
 export interface CryptoData {
   id: number;
@@ -19,8 +21,8 @@ export interface CryptoPrices {
 }
 
 export const CryptoContainer: React.FC = () => {
-  const [cryptoData, setCryptoData] = useState<CryptoData>();
-  const [cryptoPrices, setCryptoPrices] = useState<CryptoPrices[]>([]);
+  const [cryptoData, setCryptoData] = useState<CryptoData | null>(null);
+  const [cryptoPrices, setCryptoPrices] = useState<CryptoPrices[] | null>(null);
 
   interface Params {
     coin: string;
@@ -64,9 +66,5 @@ export const CryptoContainer: React.FC = () => {
     }
   };
 
-  if (!cryptoPrices) {
-    return <></>;
-  }
-
-  return <Crypto cryptoPrices={cryptoPrices} />;
+  return <Crypto cryptoData={cryptoData} cryptoPrices={cryptoPrices} />;
 };
