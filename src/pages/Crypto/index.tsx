@@ -1,7 +1,7 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-moment';
 // Components
+import { Line } from 'react-chartjs-2';
 import { Box, CircularProgress, Container, Typography } from '@mui/material';
 // Types
 import { CryptoData, CryptoPrices } from './Container';
