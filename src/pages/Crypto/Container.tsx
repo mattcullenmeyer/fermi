@@ -27,9 +27,7 @@ export const CryptoContainer: React.FC = () => {
   interface Params {
     coin: string;
   }
-
   const { coin } = useParams<Params>();
-
   const location = useLocation();
 
   useEffect(() => {
