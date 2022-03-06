@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -32,7 +32,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy App Build to S3
-        uses: npm run deploy
+        run: npm run deploy
 
       - name: Invalidate CloudFront Cache
-        uses: npm run invalidate-cache
+        run: npm run invalidate-cache
