@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js",
     "deploy": "aws s3 sync build/ s3://app.tinytrader.io",
-    "cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths /*",
+    "invalidate-cache": "aws cloudfront create-invalidation --distribution-id EWCPXW0YREDAK --paths /*",
     "test": "jest",
     "cypress:open:dev": "cypress open --config baseUrl=http://127.0.0.1:8080",
     "cypress:run:dev": "cypress run --config baseUrl=http://127.0.0.1:8080",
