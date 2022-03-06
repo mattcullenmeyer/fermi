@@ -78,7 +78,7 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
   return (
     <Container>
       <Typography variant="h4" gutterBottom component="div">
-        {`${cryptoData.name} (${cryptoData.symbol}) Price Chart`}
+        {`${cryptoData.name} (${cryptoData.symbol}) Price Chart Beta`}
       </Typography>
       <Line data={data} options={options} />
     </Container>
