@@ -1,6 +1,7 @@
 import React from 'react';
 import 'chartjs-adapter-moment';
 // Components
+import { NavBar } from '../../components/NavBar';
 import { Line } from 'react-chartjs-2';
 import {
   Box,
@@ -13,7 +14,6 @@ import {
 import { CryptoData, CryptoPrices } from './Container';
 // Styles
 import './index.css';
-import { NavBar } from '../../components/NavBar';
 
 interface CryptoProps {
   cryptoData: CryptoData | null;
