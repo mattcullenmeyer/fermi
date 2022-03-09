@@ -6,7 +6,7 @@ const {
   devServer,
   plugins,
 } = require("./webpack.config.js");
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry,
@@ -14,7 +14,14 @@ module.exports = {
   mode: "development",
   resolve,
   module: {
-    rules: moduleRules,
+    rules: [
+      ...moduleRules,
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
+      },
+    ],
   },
   devServer: {
     ...devServer,
@@ -24,7 +31,7 @@ module.exports = {
   plugins: [
     ...plugins,
     new Dotenv({
-      path: './environment/.env.dev',
+      path: "./environment/.env.dev",
     }),
   ],
 };

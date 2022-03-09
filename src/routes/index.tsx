@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import { Account } from '../pages/Account';
 import { Home } from '../pages/Home';
 import { LoginContainer as Login } from '../pages/Login/Container';
@@ -14,7 +14,10 @@ export const Routes = () => {
       <Route path="/logout" exact component={Logout} />
       <Route path="/signup" exact component={Signup} />
       <Route path="/account" exact component={Account} />
-      <Route path="/crypto/:coin" exact component={Crypto} />
+      <Route path="/crypto" exact>
+        <Redirect to="/crypto/BTC" />
+      </Route>
+      <Route path="/crypto/:slug" exact component={Crypto} />
     </BrowserRouter>
   );
 };
