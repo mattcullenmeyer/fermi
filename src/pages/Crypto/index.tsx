@@ -2,9 +2,17 @@ import React from 'react';
 import 'chartjs-adapter-moment';
 // Components
 import { Line } from 'react-chartjs-2';
-import { Box, CircularProgress, Container, Typography } from '@mui/material';
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Typography,
+  Chip,
+} from '@mui/material';
 // Types
 import { CryptoData, CryptoPrices } from './Container';
+// Styles
+import './index.css';
 
 interface CryptoProps {
   cryptoData: CryptoData | null;
@@ -17,7 +25,7 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
       <Box
         sx={{ display: 'flex', justifyContent: 'center', marginTop: '300px' }}
       >
-        <CircularProgress size={100} />
+        <CircularProgress size={75} color="inherit" thickness={2} />
       </Box>
     );
   }
@@ -42,7 +50,7 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
         pointRadius: 1,
       },
       {
-        label: 'Prices',
+        label: 'Price',
         lineTension: 0.5,
         data: cryptoPrices.map((record) => record.price),
         borderColor: '#51a6f6',
@@ -75,11 +83,34 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
     },
   };
 
+  const currentPrice = cryptoPrices[cryptoPrices.length - 1];
+  const signal = currentPrice.ema5 > currentPrice.ema50 ? 'BUY' : 'SELL';
+  const chipColor = signal === 'BUY' ? 'success' : 'error';
+
   return (
     <Container>
       <Typography variant="h4" gutterBottom component="div">
-        {`${cryptoData.name} (${cryptoData.symbol}) Price Chart Beta`}
+        {`${cryptoData.name} (${cryptoData.symbol}) Price Chart`}
       </Typography>
+      <div
+        style={{
+          display: 'flex',
+          columnGap: '10px',
+          alignItems: 'center',
+          marginBottom: '20px',
+        }}
+      >
+        <>
+          <h6>Signal:</h6>
+        </>
+        <>
+          <Chip
+            label={signal}
+            color={chipColor}
+            sx={{ fontSize: '20px', fontWeight: 500 }}
+          />
+        </>
+      </div>
       <Line data={data} options={options} />
     </Container>
   );
