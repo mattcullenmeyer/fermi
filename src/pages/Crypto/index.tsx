@@ -13,6 +13,7 @@ import {
 import { CryptoData, CryptoPrices } from './Container';
 // Styles
 import './index.css';
+import { NavBar } from '../../components/NavBar';
 
 interface CryptoProps {
   cryptoData: CryptoData | null;
@@ -34,7 +35,7 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
     labels: cryptoPrices.map((record) => record.date),
     datasets: [
       {
-        label: 'Exponential Moving Average (50)',
+        label: '50-day EMA',
         lineTension: 0.5,
         data: cryptoPrices.map((record) => record.ema50),
         borderColor: '#d758e3',
@@ -42,7 +43,7 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
         pointRadius: 1,
       },
       {
-        label: 'Exponential Moving Average (5)',
+        label: '5-day EMA',
         lineTension: 0.5,
         data: cryptoPrices.map((record) => record.ema5),
         borderColor: '#864ad0',
@@ -88,31 +89,34 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
   const chipColor = signal === 'BUY' ? 'success' : 'error';
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom component="div">
-        {`${cryptoData.name} (${cryptoData.symbol}) Price Chart`}
-      </Typography>
-      <div
-        style={{
-          display: 'flex',
-          columnGap: '10px',
-          alignItems: 'center',
-          marginBottom: '20px',
-        }}
-      >
-        <>
-          <h6>Signal:</h6>
-        </>
-        <>
-          <Chip
-            label={signal}
-            color={chipColor}
-            sx={{ fontSize: '20px', fontWeight: 500 }}
-          />
-        </>
-      </div>
-      <Line data={data} options={options} />
-    </Container>
+    <>
+      <NavBar />
+      <Container sx={{ marginTop: '50px' }}>
+        <Typography variant="h4" gutterBottom component="div">
+          {`${cryptoData.name} (${cryptoData.symbol})`}
+        </Typography>
+        <div
+          style={{
+            display: 'flex',
+            columnGap: '10px',
+            alignItems: 'center',
+            marginBottom: '20px',
+          }}
+        >
+          <>
+            <h6>Signal:</h6>
+          </>
+          <>
+            <Chip
+              label={signal}
+              color={chipColor}
+              sx={{ fontSize: '20px', fontWeight: 500 }}
+            />
+          </>
+        </div>
+        <Line data={data} options={options} />
+      </Container>
+    </>
   );
 };
 

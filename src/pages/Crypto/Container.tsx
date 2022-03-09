@@ -25,16 +25,18 @@ export const CryptoContainer: React.FC = () => {
   const [cryptoPrices, setCryptoPrices] = useState<CryptoPrices[] | null>(null);
 
   interface Params {
-    coin: string;
+    slug: string;
   }
-  const { coin } = useParams<Params>();
+  const { slug } = useParams<Params>();
   const location = useLocation();
 
   useEffect(() => {
-    if (coin) {
-      getCrypto(coin);
+    setCryptoData(null);
+    setCryptoPrices(null);
+    if (slug) {
+      getCrypto(slug);
     }
-  }, [location, coin]);
+  }, [location, slug]);
 
   useEffect(() => {
     if (cryptoData) {
@@ -42,9 +44,9 @@ export const CryptoContainer: React.FC = () => {
     }
   }, [cryptoData]);
 
-  const getCrypto = async (coin: string) => {
+  const getCrypto = async (slug: string) => {
     const response = await useAxios<CryptoData>({
-      path: `crypto/${coin}`,
+      path: `crypto/${slug}`,
       method: RequestTypes.Get,
     });
 

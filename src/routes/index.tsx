@@ -17,7 +17,7 @@ export const Routes = () => {
       <Route path="/crypto" exact>
         <Redirect to="/crypto/BTC" />
       </Route>
-      <Route path="/crypto/:coin" exact component={Crypto} />
+      <Route path="/crypto/:slug" exact component={Crypto} />
     </BrowserRouter>
   );
 };
