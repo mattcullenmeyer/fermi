@@ -5,6 +5,7 @@
   "singleQuote": true,
   "trailingComma": "es5",
   "bracketSameLine": false,
+  "endOfLine": "auto",
   "overrides": [
     {
       "files": ["*.js"],
