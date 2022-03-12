@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 // Components
-import { 
-  Container, 
-  Box, 
-  Typography,
-  Button
-} from '@mui/material';
+import { Container, Box, Typography } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 // State
 import { RootState, useAppDispatch, useAppSelector } from '../../state/store';
 import { resetUser } from '../../state/slices/userSlice';
@@ -19,10 +16,15 @@ import { setAuthCookies } from '../../utils/setAuthCookies';
 import { FERMI_ACCESS_TOKEN } from '../../constants/cookies';
 
 export const Logout: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((state: RootState) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onButtonClick = async () => { 
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state: RootState) => state);
+
+  const history = useHistory();
+
+  const onButtonClick = async () => {
+    setIsLoading(true);
     const fermiAccessToken = Cookies.get(FERMI_ACCESS_TOKEN);
 
     if (!fermiAccessToken) {
@@ -34,16 +36,18 @@ export const Logout: React.FC = () => {
         console.error('Failed to refresh authorization token.');
       }
     }
-    
+
     dispatch(resetUser());
   };
 
   useEffect(() => {
     if (user.isUserReset) {
+      setIsLoading(false);
       removeAuthCookies();
-    };
+      history.push('/login');
+    }
   }, [user]);
-  
+
   return (
     <Container>
       <Box
@@ -57,14 +61,15 @@ export const Logout: React.FC = () => {
         <Typography component="h1" variant="h5">
           Log Out
         </Typography>
-        
-        <Button
+
+        <LoadingButton
           onClick={onButtonClick}
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
+          loading={isLoading}
         >
           Log Out
-        </Button>
+        </LoadingButton>
       </Box>
     </Container>
   );
