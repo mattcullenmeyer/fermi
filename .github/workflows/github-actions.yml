@@ -9,7 +9,7 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v2
 
-      - name: Install Node
+      - name: Install node
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
