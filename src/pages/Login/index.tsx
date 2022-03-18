@@ -1,13 +1,7 @@
 import React from 'react';
 // Components
-import {
-  Container,
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Alert,
-} from '@mui/material';
+import { Container, Box, Typography, TextField, Alert } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import { words } from './words';
 
 const { heading, loginButton } = words;
@@ -19,6 +13,7 @@ export interface LoginProps {
   onEmailChange: (event: React.FocusEvent<HTMLInputElement>) => void;
   onPasswordChange: (event: React.FocusEvent<HTMLInputElement>) => void;
   onFormSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  isLoading: boolean;
 }
 
 export const Login: React.FC<LoginProps> = ({
@@ -28,6 +23,7 @@ export const Login: React.FC<LoginProps> = ({
   onEmailChange,
   onPasswordChange,
   onFormSubmit,
+  isLoading,
 }) => {
   return (
     <Container>
@@ -78,14 +74,15 @@ export const Login: React.FC<LoginProps> = ({
               'data-testid': 'passwordTextField',
             }}
           />
-          <Button
+          <LoadingButton
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            loading={isLoading}
           >
             {loginButton}
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
     </Container>
