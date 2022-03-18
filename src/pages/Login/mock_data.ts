@@ -8,6 +8,7 @@ export const defaultProps: LoginProps = {
   onEmailChange: () => {},
   onPasswordChange: () => {},
   onFormSubmit: () => {},
+  isLoading: false,
 };
 
 export const populatedProps: LoginProps = {

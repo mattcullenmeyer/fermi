@@ -1,12 +1,12 @@
 name: fermi
 
-on: [ pull_request ]
+on: [pull_request]
 
 jobs:
   jest-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Check out source code
         uses: actions/checkout@v2
 
       - name: Install Node
@@ -14,8 +14,15 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install Dependencies
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
         run: npm install
 
-      - name: Run Tests
+      - name: Run unit tests
         run: npm test
