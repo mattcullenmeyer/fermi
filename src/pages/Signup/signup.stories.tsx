@@ -21,14 +21,20 @@ Loading.args = {
   isLoading: true,
 };
 
-export const EmailError = Template.bind({});
-EmailError.args = {
+export const InvalidEmail = Template.bind({});
+InvalidEmail.args = {
+  ...populatedProps,
+  emailErrorMessage: words.invalidEmail,
+};
+
+export const EmailUnavailable = Template.bind({});
+EmailUnavailable.args = {
   ...populatedProps,
   emailErrorMessage: words.emailUnavailable,
 };
 
-export const PasswordError = Template.bind({});
-PasswordError.args = {
+export const InvalidPassword = Template.bind({});
+InvalidPassword.args = {
   ...populatedProps,
   passwordErrorMessage: words.invalidPassword,
 };
