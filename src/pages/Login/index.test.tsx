@@ -8,7 +8,7 @@ const { loginButton } = words;
 
 describe('Login', () => {
   it('should call onFormSubmit when Log In is clicked', () => {
-    const onFormSubmit = jest.fn((event) => event.preventDefault());
+    const onFormSubmit = jest.fn();
     const { getByRole } = render(
       <Login {...populatedProps} onFormSubmit={onFormSubmit} />
     );

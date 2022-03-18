@@ -8,7 +8,7 @@ const { createAccount } = words;
 
 describe('Signup', () => {
   it('should call onFormSubmit when Create Account is clicked', () => {
-    const onFormSubmit = jest.fn((event) => event.preventDefault());
+    const onFormSubmit = jest.fn();
     const { getByRole } = render(
       <Signup {...populatedProps} onFormSubmit={onFormSubmit} />
     );
