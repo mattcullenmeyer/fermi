@@ -15,8 +15,14 @@ Default.args = {
   ...defaultProps,
 };
 
-export const Error = Template.bind({});
-Error.args = {
+export const Loading = Template.bind({});
+Loading.args = {
+  ...populatedProps,
+  isLoading: true,
+};
+
+export const InvalidLogin = Template.bind({});
+InvalidLogin.args = {
   ...populatedProps,
   errorMessage: words.errorMessage,
 };

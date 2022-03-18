@@ -19,6 +19,7 @@ export const LoginContainer = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -31,6 +32,7 @@ export const LoginContainer = () => {
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrorMessage('');
+    setIsLoading(true);
 
     const response = await userLogin({
       email,
@@ -44,6 +46,7 @@ export const LoginContainer = () => {
       history.push('/');
     } else {
       setErrorMessage(words.errorMessage);
+      setIsLoading(false);
     }
   };
 
@@ -55,6 +58,7 @@ export const LoginContainer = () => {
       onEmailChange={onEmailChange}
       onPasswordChange={onPasswordChange}
       onFormSubmit={onFormSubmit}
+      isLoading={isLoading}
     />
   );
 };
