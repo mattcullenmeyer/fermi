@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 // Components
 import { Container, Box, Typography } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { LoadingButton } from '@mui/lab';
 // State
 import { RootState, useAppDispatch, useAppSelector } from '../../state/store';
 import { resetUser } from '../../state/slices/userSlice';

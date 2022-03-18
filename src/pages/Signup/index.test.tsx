@@ -1,19 +1,19 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Login } from './index';
+import { Signup } from './index';
 import { words } from './words';
 import { populatedProps } from './mock_data';
 
-const { loginButton } = words;
+const { createAccount } = words;
 
-describe('Login', () => {
-  it('should call onFormSubmit when Log In is clicked', () => {
+describe('Signup', () => {
+  it('should call onFormSubmit when Create Account is clicked', () => {
     const onFormSubmit = jest.fn((event) => event.preventDefault());
     const { getByRole } = render(
-      <Login {...populatedProps} onFormSubmit={onFormSubmit} />
+      <Signup {...populatedProps} onFormSubmit={onFormSubmit} />
     );
 
-    fireEvent.click(getByRole('button', { name: loginButton }));
+    fireEvent.click(getByRole('button', { name: createAccount }));
     expect(onFormSubmit).toHaveBeenCalled();
   });
 });

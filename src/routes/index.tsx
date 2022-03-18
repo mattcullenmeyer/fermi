@@ -3,7 +3,7 @@ import { Account } from '../pages/Account';
 import { Home } from '../pages/Home';
 import { LoginContainer as Login } from '../pages/Login/Container';
 import { Logout } from '../pages/Logout';
-import { Signup } from '../pages/Signup';
+import { SignupContainer as Signup } from '../pages/Signup/Container';
 import { CryptoContainer as Crypto } from '../pages/Crypto/Container';
 import { PageNotFound } from '../pages/PageNotFound';
 

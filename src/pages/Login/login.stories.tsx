@@ -1,7 +1,7 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Login, LoginProps } from './index';
 import { words } from './words';
+import { defaultProps, populatedProps } from './mock_data';
 
 export default {
   title: 'Login',
@@ -10,15 +10,6 @@ export default {
 
 const Template: Story<LoginProps> = (args) => <Login {...args} />;
 
-const defaultProps: LoginProps = {
-  email: 'test@email.com',
-  password: 'testing123456789',
-  errorMessage: '',
-  onEmailChange: () => {},
-  onPasswordChange: () => {},
-  onFormSubmit: () => {},
-};
-
 export const Default = Template.bind({});
 Default.args = {
   ...defaultProps,
@@ -26,6 +17,6 @@ Default.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  ...defaultProps,
+  ...populatedProps,
   errorMessage: words.errorMessage,
 };
