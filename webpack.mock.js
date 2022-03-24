@@ -1,6 +1,5 @@
 const { entry, output, mode, resolve, devServer } = require("./webpack.dev.js");
 const { moduleRules, plugins } = require("./webpack.config.js");
-
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
