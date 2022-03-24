@@ -34,7 +34,7 @@ export const useAxios = async <T>({
     const currentUrl = new URL(location.toString());
 
     currentUrl.searchParams.forEach((value, key) => {
-      if (key.startsWith('ceres_')) {
+      if (key.startsWith('mock_')) {
         params[key] = value;
       }
     });
