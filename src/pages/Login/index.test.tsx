@@ -3,12 +3,17 @@ import { render, fireEvent } from '@testing-library/react';
 import { Login } from './index';
 import { words } from './words';
 import { defaultProps, populatedProps } from './mock_data';
+import { BrowserRouter } from 'react-router-dom';
 
 const { loginButton, errorMessage } = words;
 
 describe('Login', () => {
   it('should not display error message', () => {
-    const { queryByText } = render(<Login {...defaultProps} />);
+    const { queryByText } = render(
+      <BrowserRouter>
+        <Login {...defaultProps} />
+      </BrowserRouter>
+    );
 
     expect(queryByText(errorMessage)).toBeNull();
   });
@@ -16,7 +21,9 @@ describe('Login', () => {
   it('should call onFormSubmit when Log In is clicked', () => {
     const onFormSubmit = jest.fn();
     const { getByRole } = render(
-      <Login {...populatedProps} onFormSubmit={onFormSubmit} />
+      <BrowserRouter>
+        <Login {...populatedProps} onFormSubmit={onFormSubmit} />
+      </BrowserRouter>
     );
 
     fireEvent.click(getByRole('button', { name: loginButton }));
@@ -25,8 +32,10 @@ describe('Login', () => {
   });
 
   it('should display invalid login message if request failed on submit', () => {
-    const { queryByText, getByRole } = render(
-      <Login {...populatedProps} errorMessage={errorMessage} />
+    const { queryByText } = render(
+      <BrowserRouter>
+        <Login {...populatedProps} errorMessage={errorMessage} />
+      </BrowserRouter>
     );
 
     expect(queryByText(errorMessage)).toBeTruthy();
