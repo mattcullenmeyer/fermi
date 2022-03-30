@@ -3,12 +3,9 @@ import { Link as RouterLink } from 'react-router-dom';
 // Components
 import { Box, Typography, TextField, Alert, Link } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import { LoginHeading } from '../../components/LogoHeading';
 // Words
 import { words } from './words';
-
-const { heading, loginButton, forgotPassword, welcomeBack, pleaseLogin } =
-  words;
 
 export interface LoginProps {
   email: string;
@@ -33,28 +30,38 @@ export const Login: React.FC<LoginProps> = ({
     <Box sx={{ display: 'flex' }}>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 10,
           display: 'flex',
           justifyContent: 'center',
+          alignItems: 'center',
           width: '50%',
-          padding: '25px',
+          paddingRight: '25px',
+          paddingLeft: '25px',
+          height: '350px',
+          borderRight: '1px solid lightgray',
         }}
       >
         <Box
-          sx={{ display: 'flex', flexDirection: 'column', maxWidth: '400px' }}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            maxWidth: '400px',
+          }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
-            <DoubleArrowIcon fontSize="large" color="primary" />
+          <Box sx={{ marginBottom: 4 }}>
             <Typography component="h1" variant="h4" sx={{ fontWeight: '600' }}>
-              {heading}
+              {words.heading}
             </Typography>
+            <Box sx={{ display: 'flex', marginTop: 1 }}>
+              <Typography sx={{ marginRight: 0.5, color: 'slategray' }}>
+                {words.noAccount}
+              </Typography>
+              <Link component={RouterLink} to="/signup" variant="body1">
+                {words.signUp}
+              </Link>
+            </Box>
           </Box>
-          <Box
-            component="form"
-            onSubmit={onFormSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" onSubmit={onFormSubmit} noValidate>
             {errorMessage && (
               <Alert severity="error" sx={{ mt: 2, mb: 1 }}>
                 {errorMessage}
@@ -98,20 +105,20 @@ export const Login: React.FC<LoginProps> = ({
                 to="#"
                 underline="hover"
                 variant="body1"
-                sx={{ color: 'gray' }}
+                sx={{ color: 'slategray' }}
               >
-                {forgotPassword}
+                {words.forgotPassword}
               </Link>
             </Box>
             <Box display="flex" justifyContent="center">
               <LoadingButton
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 3, pt: 1, pr: 7, pb: 1, pl: 7 }}
+                sx={{ mt: 4, pt: 1, pr: 7, pb: 1, pl: 7 }}
                 size="large"
                 loading={isLoading}
               >
-                {loginButton}
+                {words.loginButton}
               </LoadingButton>
             </Box>
           </Box>
@@ -122,8 +129,6 @@ export const Login: React.FC<LoginProps> = ({
           display: 'flex',
           justifyContent: 'center',
           width: '50%',
-          backgroundColor: '#1976d2',
-          height: '100vh',
           padding: '25px',
         }}
       >
@@ -133,18 +138,20 @@ export const Login: React.FC<LoginProps> = ({
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center',
+            height: '250px',
           }}
         >
-          <Typography
-            component="h1"
-            variant="h3"
-            sx={{ fontWeight: '600' }}
-            color="white"
-          >
-            {welcomeBack}
+          <Typography component="div" variant="h4" sx={{ fontWeight: '600' }}>
+            {words.welcomeBack}
           </Typography>
-          <Typography variant="h6" color="white">
-            {pleaseLogin}
+          <LoginHeading variant="h4" />
+          <Typography
+            component="div"
+            variant="h6"
+            sx={{ mt: 2, color: 'slategray' }}
+          >
+            {words.pleaseLogin}
           </Typography>
         </Box>
       </Box>
