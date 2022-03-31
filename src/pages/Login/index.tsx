@@ -4,7 +4,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Typography, TextField, Alert, Link } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { LoginHeading } from '../../components/LogoHeading';
-// Words
+// Other
+import './index.scss';
 import { words } from './words';
 
 export interface LoginProps {
@@ -27,18 +28,22 @@ export const Login: React.FC<LoginProps> = ({
   isLoading,
 }) => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+      }}
+    >
       <Box
         sx={{
           marginTop: 10,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          width: '50%',
           paddingRight: '25px',
           paddingLeft: '25px',
-          height: '350px',
-          borderRight: '1px solid lightgray',
         }}
       >
         <Box
@@ -53,7 +58,7 @@ export const Login: React.FC<LoginProps> = ({
               {words.heading}
             </Typography>
             <Box sx={{ display: 'flex', marginTop: 1 }}>
-              <Typography sx={{ marginRight: 0.5, color: 'slategray' }}>
+              <Typography sx={{ marginRight: 0.5, fontWeight: '300' }}>
                 {words.noAccount}
               </Typography>
               <Link component={RouterLink} to="/signup" variant="body1">
@@ -105,7 +110,7 @@ export const Login: React.FC<LoginProps> = ({
                 to="#"
                 underline="hover"
                 variant="body1"
-                sx={{ color: 'slategray' }}
+                sx={{ color: 'black', fontWeight: '300' }}
               >
                 {words.forgotPassword}
               </Link>
@@ -125,31 +130,44 @@ export const Login: React.FC<LoginProps> = ({
         </Box>
       </Box>
       <Box
+        className="divider"
         sx={{
+          width: '1px',
+          height: '350px',
+          borderRight: '1px solid lightgray',
+          marginTop: 10,
+        }}
+      ></Box>
+      <Box
+        sx={{
+          marginTop: 10,
           display: 'flex',
           justifyContent: 'center',
-          width: '50%',
-          padding: '25px',
+          paddingRight: '25px',
+          paddingLeft: '25px',
         }}
       >
         <Box
           sx={{
-            marginTop: 10,
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
+            flexDirection: 'column',
             justifyContent: 'center',
-            height: '250px',
+            width: '400px',
           }}
         >
-          <Typography component="div" variant="h4" sx={{ fontWeight: '600' }}>
+          <Typography
+            component="div"
+            variant="h4"
+            sx={{ fontWeight: '400', fontSize: '2.5rem' }}
+          >
             {words.welcomeBack}
           </Typography>
-          <LoginHeading variant="h4" />
+          <LoginHeading variant="h4" fontWeight="400" fontSize="2.5rem" />
           <Typography
             component="div"
             variant="h6"
-            sx={{ mt: 2, color: 'slategray' }}
+            sx={{ mt: 2, fontWeight: '300' }}
           >
             {words.pleaseLogin}
           </Typography>
