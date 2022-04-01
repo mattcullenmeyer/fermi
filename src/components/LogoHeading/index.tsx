@@ -3,13 +3,13 @@ import { Box, Typography } from '@mui/material';
 import DoubleArrowRoundedIcon from '@mui/icons-material/DoubleArrowRounded';
 import { Variant } from '@mui/material/styles/createTypography';
 
-interface LoginHeadingProps {
+export interface LogoHeadingProps {
   variant?: Variant;
   fontSize?: string | number;
   fontWeight?: string | number;
 }
 
-export const LoginHeading: React.FC<LoginHeadingProps> = ({
+export const LogoHeading: React.FC<LogoHeadingProps> = ({
   variant = 'h4',
   fontSize = '2.125rem',
   fontWeight = 400,
@@ -27,5 +27,3 @@ export const LoginHeading: React.FC<LoginHeadingProps> = ({
     </Box>
   );
 };
-
-export default LoginHeading;
