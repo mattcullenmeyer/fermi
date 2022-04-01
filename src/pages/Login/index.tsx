@@ -1,10 +1,11 @@
 import React from 'react';
 // Components
-import { Container, Box, Typography, TextField, Alert } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-import { words } from './words';
-
-const { heading, loginButton } = words;
+import { Box } from '@mui/material';
+import { LoginHeading } from './components/LoginHeading';
+import { LoginForm } from './components/LoginForm';
+import { LoginPromo } from './components/LoginPromo';
+// Other
+import './index.scss';
 
 export interface LoginProps {
   email: string;
@@ -26,65 +27,27 @@ export const Login: React.FC<LoginProps> = ({
   isLoading,
 }) => {
   return (
-    <Container>
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          {heading}
-        </Typography>
-        <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
-          {errorMessage && (
-            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>
-              {errorMessage}
-            </Alert>
-          )}
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={onEmailChange}
-            inputProps={{
-              'data-testid': 'emailTextField',
-            }}
+    <Box className="login-container">
+      <Box className="login-form-container">
+        <Box className="login-form">
+          <LoginHeading />
+          <LoginForm
+            email={email}
+            password={password}
+            errorMessage={errorMessage}
+            onEmailChange={onEmailChange}
+            onPasswordChange={onPasswordChange}
+            onFormSubmit={onFormSubmit}
+            isLoading={isLoading}
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={onPasswordChange}
-            inputProps={{
-              'data-testid': 'passwordTextField',
-            }}
-          />
-          <LoadingButton
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            loading={isLoading}
-          >
-            {loginButton}
-          </LoadingButton>
         </Box>
       </Box>
-    </Container>
+      <Box className="login-divider"></Box>
+      <Box className="login-promo-container">
+        <Box className="login-promo">
+          <LoginPromo />
+        </Box>
+      </Box>
+    </Box>
   );
 };
