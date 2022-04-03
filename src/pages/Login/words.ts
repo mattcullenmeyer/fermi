@@ -1,10 +1,10 @@
 export const words = {
-  heading: 'Login',
+  heading: 'Log in',
   noAccount: "Don't have an account? ",
-  signUp: 'Sign Up',
+  signup: 'Sign up',
   loginButton: 'Log In',
   errorMessage: 'Your email address or password is invalid.',
   forgotPassword: 'Forgot password?',
-  welcomeBack: 'Welcome back to',
-  pleaseLogin: 'Please log in to continue.',
+  promoHeading: 'Welcome back to',
+  promoDescription: 'Please log in to continue.',
 };

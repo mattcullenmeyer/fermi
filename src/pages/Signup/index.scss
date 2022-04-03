@@ -1,41 +1,41 @@
-$login-form-height: 373px;
-$login-margin-top: 80px;
+$signup-form-height: 340px;
+$signup-margin-top: 80px;
 
-.login-container {
+.signup-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
 
-  .login-form-container {
+  .signup-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 25px;
-    margin-top: $login-margin-top;
+    margin-top: $signup-margin-top;
 
-    .login-form {
+    .signup-form {
       display: flex;
       flex-direction: column;
       max-width: 400px;
-      height: $login-form-height;
+      height: $signup-form-height;
     }
   }
 
-  .login-divider {
+  .signup-divider {
     width: 1px;
     border-right: 1px solid lightgray;
-    margin-top: $login-margin-top;
-    height: $login-form-height;
+    margin-top: $signup-margin-top;
+    height: $signup-form-height;
   }
 
-  .login-promo-container {
+  .signup-promo-container {
     display: flex;
     justify-content: center;
     padding: 0 25px;
-    margin-top: $login-margin-top;
+    margin-top: $signup-margin-top;
 
-    .login-promo {
+    .signup-promo {
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -46,7 +46,7 @@ $login-margin-top: 80px;
 }
 
 @media only screen and (max-width: 1000px) {
-  .login-divider {
+  .signup-divider {
     display: none;
   }
 }
