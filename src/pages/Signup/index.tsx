@@ -1,9 +1,11 @@
 import React, { FocusEvent, FormEvent } from 'react';
 // Components
-import { Container, Box, Typography, TextField, Alert } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-// Words
-import { words } from './words';
+import { Box } from '@mui/material';
+import { SignupHeading } from './components/SignupHeading';
+import { SignupForm } from './components/SignupForm';
+import { SignupPromo } from './components/SignupPromo';
+// Other
+import './index.scss';
 
 export interface SignupProps {
   email: string;
@@ -33,66 +35,31 @@ export const Signup: React.FC<SignupProps> = ({
   isLoading,
 }) => {
   return (
-    <Container>
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          {words.header}
-        </Typography>
-        <Box component="form" onSubmit={onFormSubmit} noValidate sx={{ mt: 1 }}>
-          {signupErrorMessage && (
-            <Alert severity="error" sx={{ mt: 2, mb: 1 }}>
-              {signupErrorMessage}
-            </Alert>
-          )}
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={onEmailChange}
-            onBlur={onEmailBlur}
-            error={emailErrorMessage ? true : false}
-            helperText={emailErrorMessage}
+    <Box className="signup-container">
+      <Box className="signup-form-container">
+        <Box className="signup-form">
+          <SignupHeading />
+          <SignupForm
+            email={email}
+            password={password}
+            signupErrorMessage={signupErrorMessage}
+            emailErrorMessage={emailErrorMessage}
+            passwordErrorMessage={passwordErrorMessage}
+            onEmailChange={onEmailChange}
+            onPasswordChange={onPasswordChange}
+            onEmailBlur={onEmailBlur}
+            onPasswordBlur={onPasswordBlur}
+            onFormSubmit={onFormSubmit}
+            isLoading={isLoading}
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="password"
-            label="Password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={onPasswordChange}
-            onBlur={onPasswordBlur}
-            error={passwordErrorMessage ? true : false}
-            helperText={passwordErrorMessage}
-          />
-          <LoadingButton
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            disabled={emailErrorMessage || passwordErrorMessage ? true : false}
-            loading={isLoading}
-          >
-            {words.createAccount}
-          </LoadingButton>
         </Box>
       </Box>
-    </Container>
+      <Box className="signup-divider"></Box>
+      <Box className="signup-promo-container">
+        <Box className="signup-promo">
+          <SignupPromo />
+        </Box>
+      </Box>
+    </Box>
   );
 };

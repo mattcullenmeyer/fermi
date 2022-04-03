@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { LogoHeading } from '../../../components/LogoHeading';
 import { words } from '../words';
 
-export const LoginPromo: React.FC = () => {
+export const SignupPromo: React.FC = () => {
   return (
     <>
       <Typography
