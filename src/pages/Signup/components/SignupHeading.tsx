@@ -13,7 +13,12 @@ export const SignupHeading: React.FC = () => {
         <Typography sx={{ marginRight: 0.5, fontWeight: '300' }}>
           {words.existingAccount}
         </Typography>
-        <Link component={RouterLink} to="/login" variant="body1">
+        <Link
+          component={RouterLink}
+          to="/login"
+          underline="hover"
+          variant="body1"
+        >
           {words.login}
         </Link>
       </Box>

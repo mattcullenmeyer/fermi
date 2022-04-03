@@ -59,7 +59,6 @@ export const LoginForm: React.FC<LoginProps> = ({
           to="#" // TODO: Add link to change password page
           underline="hover"
           variant="body1"
-          sx={{ color: 'black', fontWeight: '300' }}
         >
           {words.forgotPassword}
         </Link>
