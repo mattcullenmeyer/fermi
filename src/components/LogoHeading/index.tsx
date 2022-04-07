@@ -11,8 +11,8 @@ export interface LogoHeadingProps {
 
 export const LogoHeading: React.FC<LogoHeadingProps> = ({
   variant = 'h4',
-  fontSize = '2.125rem',
-  fontWeight = 400,
+  fontSize,
+  fontWeight,
 }) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>

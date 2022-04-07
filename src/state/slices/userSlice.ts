@@ -8,7 +8,9 @@ import { userLogout, LogoutData } from '../../services/userLogout';
 enum Errors {
   FetchErrorMessage = 'Failed to fetch user data.',
   LogoutErrorMessage = 'Failed to log out user.',
-};
+}
+
+export type ThemeMode = 'light' | 'dark';
 
 export interface User {
   id: number;
@@ -21,7 +23,7 @@ export interface User {
 
 // https://redux-toolkit.js.org/usage/usage-with-typescript
 export const fetchUser = createAsyncThunk<
-  User, 
+  User,
   void,
   {
     dispatch: AppDispatch;
@@ -35,7 +37,7 @@ export const fetchUser = createAsyncThunk<
 
   if (response.status === 200 && response.data) {
     return response.data;
-  };
+  }
 
   throw new Error(response.error || Errors.FetchErrorMessage);
 });
@@ -52,7 +54,7 @@ export const resetUser = createAsyncThunk<
 
   if (response.status === 200 && response.data) {
     return response.data;
-  };
+  }
 
   throw new Error(response.error || Errors.LogoutErrorMessage);
 });

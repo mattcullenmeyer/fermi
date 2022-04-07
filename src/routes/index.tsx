@@ -1,4 +1,5 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { NavBar } from '../components/NavBar';
 import { Account } from '../pages/Account';
 import { Home } from '../pages/Home';
 import { LoginContainer as Login } from '../pages/Login/Container';
@@ -10,6 +11,7 @@ import { PageNotFound } from '../pages/PageNotFound';
 export const Routes = () => {
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Login} />
