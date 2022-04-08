@@ -3,5 +3,9 @@ export const words = {
   library: 'Library',
   enableLightModeTooltip: 'Enable light mode',
   enableDarkModeTooltip: 'Enable dark mode',
-  accountTooltip: 'Open profile settings',
+  profileMenu: {
+    profileTooltip: 'Open profile settings',
+    profileMenu: 'Profile',
+    logOutMenu: 'Log out',
+  },
 };
