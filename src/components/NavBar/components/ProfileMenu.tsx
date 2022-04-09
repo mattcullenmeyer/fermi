@@ -8,7 +8,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { words } from '../words';
 
 const { profileMenu } = words;
@@ -57,10 +57,10 @@ export const ProfileMenu: React.FC = () => {
         onClose={handleCloseMenu}
       >
         <MenuItem key="profile" onClick={onClickProfile}>
-          <Typography textAlign="center">{profileMenu.profileMenu}</Typography>
+          <Typography>{profileMenu.profile}</Typography>
         </MenuItem>
         <MenuItem key="log-out" onClick={onClickLogout}>
-          <Typography textAlign="center">{profileMenu.logOutMenu}</Typography>
+          <Typography>{profileMenu.logOut}</Typography>
         </MenuItem>
       </Menu>
     </Box>

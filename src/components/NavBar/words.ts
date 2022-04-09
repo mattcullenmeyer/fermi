@@ -1,15 +1,15 @@
 export const words = {
-  store: 'Store',
-  library: 'Library',
   enableLightModeTooltip: 'Enable light mode',
   enableDarkModeTooltip: 'Enable dark mode',
-  profileMenu: {
-    profileTooltip: 'Open profile settings',
-    profileMenu: 'Profile',
-    logOutMenu: 'Log out',
-  },
-  accessButtons: {
+  pages: {
+    store: 'Store',
+    library: 'Library',
     logIn: 'Log In',
     signUp: 'Sign Up',
+  },
+  profileMenu: {
+    profileTooltip: 'Open profile settings',
+    profile: 'Profile',
+    logOut: 'Log out',
   },
 };
