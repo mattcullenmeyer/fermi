@@ -8,4 +8,8 @@ export const words = {
     profileMenu: 'Profile',
     logOutMenu: 'Log out',
   },
+  accessButtons: {
+    logIn: 'Log In',
+    signUp: 'Sign Up',
+  },
 };

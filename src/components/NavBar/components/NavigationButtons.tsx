@@ -3,7 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import { words } from '../words';
 
-export const NavigationButtons: React.FC = () => {
+interface NavigationButtonsProps {
+  isLoggedIn: boolean;
+}
+
+export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
+  isLoggedIn,
+}) => {
   const history = useHistory();
 
   return (
@@ -22,14 +28,16 @@ export const NavigationButtons: React.FC = () => {
       >
         {words.store}
       </Button>
-      <Button
-        key={words.library}
-        onClick={() => history.push('/library')}
-        color="inherit"
-        sx={{ mx: 1, display: 'block' }}
-      >
-        {words.library}
-      </Button>
+      {isLoggedIn && (
+        <Button
+          key={words.library}
+          onClick={() => history.push('/library')}
+          color="inherit"
+          sx={{ mx: 1, display: 'block' }}
+        >
+          {words.library}
+        </Button>
+      )}
     </Box>
   );
 };
