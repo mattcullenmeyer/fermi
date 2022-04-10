@@ -3,7 +3,6 @@ import { NavBar } from '../components/NavBar';
 import { Store } from '../pages/Store';
 import { Library } from '../pages/Library';
 import { LoginContainer as Login } from '../pages/Login/Container';
-import { Logout } from '../pages/Logout';
 import { SignupContainer as Signup } from '../pages/Signup/Container';
 import { Profile } from '../pages/Profile';
 import { CryptoContainer as Crypto } from '../pages/Crypto/Container';
@@ -17,7 +16,6 @@ export const Routes = () => {
         <Route path="/" exact component={Store} />
         <Route path="/library" exact component={Library} />
         <Route path="/login" exact component={Login} />
-        <Route path="/logout" exact component={Logout} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/crypto" exact>

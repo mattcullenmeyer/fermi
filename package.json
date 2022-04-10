@@ -20,6 +20,7 @@
     "build-storybook": "build-storybook"
   },
   "lint-staged": {
+    "*.scss": "prettier --write",
     "*.{js,jsx,ts,tsx,json}": "prettier --write",
     "src/**/*.(js,jsx,ts,tsx)": "eslint --fix"
   },

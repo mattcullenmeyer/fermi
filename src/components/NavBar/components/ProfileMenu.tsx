@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+// Components & Icons
 import {
   Box,
   IconButton,
@@ -9,12 +10,18 @@ import {
   Typography,
 } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+// State
+import { useAppDispatch } from '../../../state/store';
+import { resetUser } from '../../../state/slices/userSlice';
+// Other
+import { removeAuthCookies } from '../../../utils/removeAuthCookies';
 import { words } from '../words';
 
 const { profileMenu } = words;
 
 export const ProfileMenu: React.FC = () => {
   const history = useHistory();
+  const dispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,7 +37,9 @@ export const ProfileMenu: React.FC = () => {
 
   const onClickLogout = () => {
     handleCloseMenu();
-    // TODO: Log out user
+    dispatch(resetUser());
+    removeAuthCookies();
+    history.push('/login');
   };
 
   return (
