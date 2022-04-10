@@ -1,7 +1,6 @@
 import React from 'react';
 import 'chartjs-adapter-moment';
 // Components
-import { NavBar } from '../../components/NavBar';
 import { Line } from 'react-chartjs-2';
 import {
   Box,
@@ -90,7 +89,6 @@ export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
 
   return (
     <>
-      <NavBar />
       <Container sx={{ marginTop: '50px' }}>
         <Typography variant="h4" gutterBottom component="div">
           {`${cryptoData.name} (${cryptoData.symbol})`}
