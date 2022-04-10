@@ -61,14 +61,14 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
+        <MenuItem key="store" onClick={onClickStore}>
+          <Typography>{pages.store}</Typography>
+        </MenuItem>
         {isLoggedIn && (
-          <MenuItem key="store" onClick={onClickStore}>
-            <Typography>{pages.store}</Typography>
+          <MenuItem key="library" onClick={onClickLibrary}>
+            <Typography>{pages.library}</Typography>
           </MenuItem>
         )}
-        <MenuItem key="library" onClick={onClickLibrary}>
-          <Typography>{pages.library}</Typography>
-        </MenuItem>
         {!isLoggedIn && (
           <MenuItem key="login" onClick={onClickLogIn}>
             <Typography>{pages.logIn}</Typography>

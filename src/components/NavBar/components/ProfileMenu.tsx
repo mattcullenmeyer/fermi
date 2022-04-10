@@ -17,7 +17,7 @@ import { resetUser } from '../../../state/slices/userSlice';
 import { removeAuthCookies } from '../../../utils/removeAuthCookies';
 import { words } from '../words';
 
-const { profileMenu } = words;
+const { pages } = words;
 
 export const ProfileMenu: React.FC = () => {
   const history = useHistory();
@@ -37,14 +37,14 @@ export const ProfileMenu: React.FC = () => {
 
   const onClickLogout = () => {
     handleCloseMenu();
-    dispatch(resetUser());
     removeAuthCookies();
+    dispatch(resetUser());
     history.push('/login');
   };
 
   return (
     <Box>
-      <Tooltip title={profileMenu.profileTooltip}>
+      <Tooltip title={words.profileTooltip}>
         <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
           <AccountCircle sx={{ height: '1.15em', width: '1.15em' }} />
         </IconButton>
@@ -66,10 +66,10 @@ export const ProfileMenu: React.FC = () => {
         onClose={handleCloseMenu}
       >
         <MenuItem key="profile" onClick={onClickProfile}>
-          <Typography>{profileMenu.profile}</Typography>
+          <Typography>{pages.profile}</Typography>
         </MenuItem>
         <MenuItem key="log-out" onClick={onClickLogout}>
-          <Typography>{profileMenu.logOut}</Typography>
+          <Typography>{pages.logOut}</Typography>
         </MenuItem>
       </Menu>
     </Box>

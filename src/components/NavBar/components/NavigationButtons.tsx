@@ -18,7 +18,6 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
     <Box
       sx={{
         marginLeft: 4,
-        flexGrow: 1,
         display: { xs: 'none', md: 'flex' },
       }}
     >

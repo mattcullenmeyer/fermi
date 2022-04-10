@@ -3,6 +3,7 @@ import { Box, IconButton, Tooltip } from '@mui/material';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { useGlobalContext } from '../../../state/context';
+import { ThemeMode } from '../../../types/user';
 import { THEME_MODE } from '../../../constants/localStorage';
 import { words } from '../words';
 
@@ -10,7 +11,10 @@ export const DarkModeButton: React.FC = () => {
   const { isDarkMode, setIsDarkMode } = useGlobalContext();
 
   const handleThemeChange = () => {
-    localStorage.setItem(THEME_MODE, isDarkMode ? 'light' : 'dark');
+    localStorage.setItem(
+      THEME_MODE,
+      isDarkMode ? ThemeMode.Light : ThemeMode.Dark
+    );
     setIsDarkMode(!isDarkMode);
     // TODO: Update user account's dark mode setting
   };

@@ -10,26 +10,22 @@ import { AccessButtons } from './components/AccessButtons';
 // State
 import { useAppSelector } from '../../state/store';
 import { RequestStatus } from '../../state/requestStatusTypes';
-// Other
-import './index.css';
 
 export const NavBar: React.FC = () => {
   const { user } = useAppSelector((state) => state);
   const isLoggedIn = user.status === RequestStatus.Success;
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color="inherit" sx={{ top: 0, height: '64px' }}>
-        <Toolbar>
-          <PageMenu isLoggedIn={isLoggedIn} />
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} />
-          <ResponsiveLogo />
-          <NavigationButtons isLoggedIn={isLoggedIn} />
-          <Box sx={{ flexGrow: 1 }} />
-          <DarkModeButton />
-          {isLoggedIn ? <ProfileMenu /> : <AccessButtons />}
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="sticky" color="inherit" sx={{ top: 0, height: '64px' }}>
+      <Toolbar>
+        <PageMenu isLoggedIn={isLoggedIn} />
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} />
+        <ResponsiveLogo />
+        <NavigationButtons isLoggedIn={isLoggedIn} />
+        <Box sx={{ flexGrow: 1 }} />
+        <DarkModeButton />
+        {isLoggedIn ? <ProfileMenu /> : <AccessButtons />}
+      </Toolbar>
+    </AppBar>
   );
 };

@@ -10,8 +10,6 @@ enum Errors {
   LogoutErrorMessage = 'Failed to log out user.',
 }
 
-export type ThemeMode = 'light' | 'dark';
-
 export interface User {
   id: number;
   username: string;
