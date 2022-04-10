@@ -7,23 +7,27 @@ export interface LogoHeadingProps {
   variant?: Variant;
   fontSize?: string | number;
   fontWeight?: string | number;
+  iconOnly?: boolean;
 }
 
 export const LogoHeading: React.FC<LogoHeadingProps> = ({
   variant = 'h4',
-  fontSize = '2.125rem',
-  fontWeight = 400,
+  fontSize,
+  fontWeight,
+  iconOnly = false,
 }) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <DoubleArrowRoundedIcon sx={{ fontSize: fontSize }} color="primary" />
-      <Typography
-        component="div"
-        variant={variant}
-        sx={{ fontWeight: fontWeight, fontSize: fontSize }}
-      >
-        TinyTrader
-      </Typography>
+      {!iconOnly && (
+        <Typography
+          component="div"
+          variant={variant}
+          sx={{ fontWeight: fontWeight, fontSize: fontSize }}
+        >
+          TinyTrader
+        </Typography>
+      )}
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../store';
 import { RequestStatus } from '../requestStatusTypes';
 import { RequestTypes } from '../../services/useAxios';
@@ -8,7 +8,7 @@ import { userLogout, LogoutData } from '../../services/userLogout';
 enum Errors {
   FetchErrorMessage = 'Failed to fetch user data.',
   LogoutErrorMessage = 'Failed to log out user.',
-};
+}
 
 export interface User {
   id: number;
@@ -21,7 +21,7 @@ export interface User {
 
 // https://redux-toolkit.js.org/usage/usage-with-typescript
 export const fetchUser = createAsyncThunk<
-  User, 
+  User,
   void,
   {
     dispatch: AppDispatch;
@@ -35,40 +35,23 @@ export const fetchUser = createAsyncThunk<
 
   if (response.status === 200 && response.data) {
     return response.data;
-  };
+  }
 
   throw new Error(response.error || Errors.FetchErrorMessage);
 });
 
-export const resetUser = createAsyncThunk<
-  LogoutData,
-  void,
-  {
-    dispatch: AppDispatch;
-    state: RootState;
-  }
->('user/resetUser', async () => {
-  const response = await userLogout();
-
-  if (response.status === 200 && response.data) {
-    return response.data;
-  };
-
-  throw new Error(response.error || Errors.LogoutErrorMessage);
-});
+export const resetUser = createAction('resetUser');
 
 interface UserState {
   status: RequestStatus;
   data: {};
   error: null | string;
-  isUserReset: boolean;
 }
 
 const initialState: UserState = {
   status: RequestStatus.Idle,
   data: {},
   error: null,
-  isUserReset: false,
 };
 
 export const userSlice = createSlice<UserState, any>({
@@ -87,15 +70,8 @@ export const userSlice = createSlice<UserState, any>({
       state.status = RequestStatus.Failure;
       state.error = action.error.message || Errors.FetchErrorMessage;
     });
-    builder.addCase(resetUser.fulfilled, () => {
-      return {
-        ...initialState,
-        isUserReset: true,
-      };
-    });
-    builder.addCase(resetUser.rejected, (state, action) => {
-      state.status = RequestStatus.Failure;
-      state.error = action.error.message || Errors.LogoutErrorMessage;
+    builder.addCase(resetUser, () => {
+      return { ...initialState };
     });
   },
 });
