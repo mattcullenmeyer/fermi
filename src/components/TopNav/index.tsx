@@ -11,7 +11,7 @@ import { AccessButtons } from './components/AccessButtons';
 import { useAppSelector } from '../../state/store';
 import { RequestStatus } from '../../state/requestStatusTypes';
 
-export const NavBar: React.FC = () => {
+export const TopNav: React.FC = () => {
   const { user } = useAppSelector((state) => state);
   const isLoggedIn = user.status === RequestStatus.Success;
 
