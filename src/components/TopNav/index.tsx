@@ -8,7 +8,7 @@ import { DarkModeButton } from './components/DarkModeButton';
 import { NavigationButtons } from './components/NavigationButtons';
 import { AccessButtons } from './components/AccessButtons';
 
-interface TopNavProps {
+export interface TopNavProps {
   isLoggedIn: boolean;
 }
 
