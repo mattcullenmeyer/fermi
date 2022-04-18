@@ -1,5 +1,5 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { TopNav } from '../components/TopNav';
+import { TopNavContainer as TopNav } from '../components/TopNav/Container';
 import { Store } from '../pages/Store';
 import { Library } from '../pages/Library';
 import { LoginContainer as Login } from '../pages/Login/Container';

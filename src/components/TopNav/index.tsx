@@ -7,14 +7,12 @@ import { ProfileMenu } from './components/ProfileMenu';
 import { DarkModeButton } from './components/DarkModeButton';
 import { NavigationButtons } from './components/NavigationButtons';
 import { AccessButtons } from './components/AccessButtons';
-// State
-import { useAppSelector } from '../../state/store';
-import { RequestStatus } from '../../state/requestStatusTypes';
 
-export const TopNav: React.FC = () => {
-  const { user } = useAppSelector((state) => state);
-  const isLoggedIn = user.status === RequestStatus.Success;
+interface TopNavProps {
+  isLoggedIn: boolean;
+}
 
+export const TopNav: React.FC<TopNavProps> = ({ isLoggedIn }) => {
   return (
     <AppBar position="sticky" color="inherit" sx={{ top: 0, height: '64px' }}>
       <Toolbar>
