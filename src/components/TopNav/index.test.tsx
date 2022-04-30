@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '../../utils/test-utils';
 import { TopNav } from './index';
-import { QuerySelectors } from './testids';
+import { QuerySelectors } from './testIds';
 
 describe('TopNav', () => {
   it('should display ProfileMenu when logged in', () => {

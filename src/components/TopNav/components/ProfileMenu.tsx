@@ -16,7 +16,7 @@ import { resetUser } from '../../../state/slices/userSlice';
 // Other
 import { removeAuthCookies } from '../../../utils/removeAuthCookies';
 import { words } from '../words';
-import { WriteSelectors } from '../testids';
+import { WriteSelectors } from '../testIds';
 
 const { pages } = words;
 
