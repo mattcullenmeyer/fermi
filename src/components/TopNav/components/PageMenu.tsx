@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { words } from '../words';
+import { WriteSelectors } from '../testIds';
 
 const { pages } = words;
 
@@ -43,7 +44,10 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
   return (
     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
       <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-        <MenuIcon sx={{ height: '1.15em', width: '1.15em' }} />
+        <MenuIcon
+          sx={{ height: '1.15em', width: '1.15em' }}
+          {...WriteSelectors.pageMenu}
+        />
       </IconButton>
       <Menu
         sx={{ mt: '6px' }}
@@ -65,17 +69,29 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
           <Typography>{pages.store}</Typography>
         </MenuItem>
         {isLoggedIn && (
-          <MenuItem key="library" onClick={onClickLibrary}>
+          <MenuItem
+            key="library"
+            onClick={onClickLibrary}
+            {...WriteSelectors.libraryMenu}
+          >
             <Typography>{pages.library}</Typography>
           </MenuItem>
         )}
         {!isLoggedIn && (
-          <MenuItem key="login" onClick={onClickLogIn}>
+          <MenuItem
+            key="login"
+            onClick={onClickLogIn}
+            {...WriteSelectors.loginMenu}
+          >
             <Typography>{pages.logIn}</Typography>
           </MenuItem>
         )}
         {!isLoggedIn && (
-          <MenuItem key="signup" onClick={onClickSignUp}>
+          <MenuItem
+            key="signup"
+            onClick={onClickSignUp}
+            {...WriteSelectors.signupMenu}
+          >
             <Typography>{pages.signUp}</Typography>
           </MenuItem>
         )}
