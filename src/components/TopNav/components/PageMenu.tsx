@@ -42,12 +42,12 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
   };
 
   return (
-    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+    <Box
+      sx={{ display: { xs: 'flex', md: 'none' } }}
+      {...WriteSelectors.pageMenu}
+    >
       <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-        <MenuIcon
-          sx={{ height: '1.15em', width: '1.15em' }}
-          {...WriteSelectors.pageMenu}
-        />
+        <MenuIcon sx={{ height: '1.15em', width: '1.15em' }} />
       </IconButton>
       <Menu
         sx={{ mt: '6px' }}
@@ -65,7 +65,11 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        <MenuItem key="store" onClick={onClickStore}>
+        <MenuItem
+          key="store"
+          onClick={onClickStore}
+          {...WriteSelectors.storeMenu}
+        >
           <Typography>{pages.store}</Typography>
         </MenuItem>
         {isLoggedIn && (

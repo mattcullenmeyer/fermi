@@ -36,7 +36,10 @@ export const Signup: React.FC<SignupProps> = ({
 }) => {
   return (
     <Box className="signup-container">
-      <Box className="signup-form-container">
+      <Box
+        className="signup-form-container"
+        style={{ marginBottom: signupErrorMessage ? '50px' : '' }}
+      >
         <Box className="signup-form">
           <SignupHeading />
           <SignupForm

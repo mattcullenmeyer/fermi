@@ -9,7 +9,7 @@ export const SignupPromo: React.FC = () => {
       <Typography
         component="div"
         variant="h4"
-        sx={{ fontWeight: '400', fontSize: '2.5rem' }}
+        sx={{ fontWeight: '400', fontSize: '2.5rem', textAlign: 'center' }}
       >
         {words.promoHeading}
       </Typography>
@@ -17,7 +17,7 @@ export const SignupPromo: React.FC = () => {
       <Typography
         component="div"
         variant="h6"
-        sx={{ mt: 2, fontWeight: '300' }}
+        sx={{ mt: 2, fontWeight: '300', textAlign: 'center' }}
       >
         {words.promoDescription}
       </Typography>

@@ -66,10 +66,18 @@ export const ProfileMenu: React.FC = () => {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        <MenuItem key="profile" onClick={onClickProfile}>
+        <MenuItem
+          key="profile"
+          onClick={onClickProfile}
+          {...WriteSelectors.profileMenuItem}
+        >
           <Typography>{pages.profile}</Typography>
         </MenuItem>
-        <MenuItem key="log-out" onClick={onClickLogout}>
+        <MenuItem
+          key="log-out"
+          onClick={onClickLogout}
+          {...WriteSelectors.logoutMenuItem}
+        >
           <Typography>{pages.logOut}</Typography>
         </MenuItem>
       </Menu>

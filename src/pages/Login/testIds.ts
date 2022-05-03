@@ -4,17 +4,8 @@ import {
 } from '../../utils/testQueries';
 
 export const testIds = {
-  profileMenu: null,
-  accessButtons: null,
-  pageMenu: null,
-  storeMenu: null,
-  libraryMenu: null,
-  loginMenu: null,
-  signupMenu: null,
-  storeLink: null,
-  libraryLink: null,
-  profileMenuItem: null,
-  logoutMenuItem: null,
+  emailTextField: null,
+  passwordTextField: null,
 };
 
 export const WriteSelectors = writeSelectorGenerator(testIds);

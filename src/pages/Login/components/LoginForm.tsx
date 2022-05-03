@@ -6,6 +6,7 @@ import { LoadingButton } from '@mui/lab';
 import { LoginProps } from '..';
 // Other
 import { words } from '../words';
+import { WriteSelectors } from '../testIds';
 
 export const LoginForm: React.FC<LoginProps> = ({
   email,
@@ -34,9 +35,7 @@ export const LoginForm: React.FC<LoginProps> = ({
         autoFocus
         value={email}
         onChange={onEmailChange}
-        inputProps={{
-          'data-testid': 'emailTextField',
-        }}
+        {...WriteSelectors.emailTextField}
       />
       <TextField
         margin="normal"
@@ -49,9 +48,7 @@ export const LoginForm: React.FC<LoginProps> = ({
         autoComplete="current-password"
         value={password}
         onChange={onPasswordChange}
-        inputProps={{
-          'data-testid': 'passwordTextField',
-        }}
+        {...WriteSelectors.passwordTextField}
       />
       <Box sx={{ display: 'flex', justifyContent: 'right', marginTop: 1 }}>
         <Link

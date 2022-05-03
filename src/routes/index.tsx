@@ -13,7 +13,10 @@ export const Routes = () => {
     <BrowserRouter>
       <TopNav />
       <Switch>
-        <Route path="/" exact component={Store} />
+        <Route path="/" exact>
+          <Redirect to="/store" />
+        </Route>
+        <Route path="/store" exact component={Store} />
         <Route path="/library" exact component={Library} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
