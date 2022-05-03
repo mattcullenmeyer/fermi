@@ -68,7 +68,7 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
         <MenuItem
           key="store"
           onClick={onClickStore}
-          {...WriteSelectors.storeMenu}
+          {...WriteSelectors.storeMenuItem}
         >
           <Typography>{pages.store}</Typography>
         </MenuItem>
@@ -76,7 +76,7 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
           <MenuItem
             key="library"
             onClick={onClickLibrary}
-            {...WriteSelectors.libraryMenu}
+            {...WriteSelectors.libraryMenuItem}
           >
             <Typography>{pages.library}</Typography>
           </MenuItem>
@@ -85,7 +85,7 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
           <MenuItem
             key="login"
             onClick={onClickLogIn}
-            {...WriteSelectors.loginMenu}
+            {...WriteSelectors.loginMenuItem}
           >
             <Typography>{pages.logIn}</Typography>
           </MenuItem>
@@ -94,7 +94,7 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
           <MenuItem
             key="signup"
             onClick={onClickSignUp}
-            {...WriteSelectors.signupMenu}
+            {...WriteSelectors.signupMenuItem}
           >
             <Typography>{pages.signUp}</Typography>
           </MenuItem>

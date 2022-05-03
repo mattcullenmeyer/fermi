@@ -1,5 +1,5 @@
-import { EMAIL, PASSWORD } from './../../../src/constants/credentials';
-import { QuerySelectors } from '../../../src/pages/Login/testIds';
+import { EMAIL, PASSWORD } from '../../../../src/constants/credentials';
+import { QuerySelectors } from '../../../../src/pages/Login/testIds';
 
 const { emailTextField, passwordTextField } = QuerySelectors;
 

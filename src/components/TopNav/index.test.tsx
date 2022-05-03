@@ -8,17 +8,17 @@ describe('TopNav', () => {
     it('should show login and signup menus when not logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={false} />);
 
-      expect(queryByTestId(QuerySelectors.loginMenu)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.signupMenu)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.libraryMenu)).toBeNull();
+      expect(queryByTestId(QuerySelectors.loginMenuItem)).toBeTruthy();
+      expect(queryByTestId(QuerySelectors.signupMenuItem)).toBeTruthy();
+      expect(queryByTestId(QuerySelectors.libraryMenuItem)).toBeNull();
     });
 
     it('should show library menu when logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={true} />);
 
-      expect(queryByTestId(QuerySelectors.loginMenu)).toBeNull();
-      expect(queryByTestId(QuerySelectors.signupMenu)).toBeNull();
-      expect(queryByTestId(QuerySelectors.libraryMenu)).toBeTruthy();
+      expect(queryByTestId(QuerySelectors.loginMenuItem)).toBeNull();
+      expect(queryByTestId(QuerySelectors.signupMenuItem)).toBeNull();
+      expect(queryByTestId(QuerySelectors.libraryMenuItem)).toBeTruthy();
     });
   });
 

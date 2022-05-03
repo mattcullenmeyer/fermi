@@ -1,5 +1,5 @@
-import { QuerySelectors } from '../../../src/components/TopNav/testIds';
-import { EMAIL, PASSWORD } from '../../../src/constants/credentials';
+import { QuerySelectors } from '../../../../src/components/TopNav/testIds';
+import { EMAIL, PASSWORD } from '../../../../src/constants/credentials';
 
 const { profileMenu, profileMenuItem, logoutMenuItem } = QuerySelectors;
 

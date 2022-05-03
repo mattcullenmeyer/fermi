@@ -5,6 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import { SignupProps } from '..';
 // Other
 import { words } from '../words';
+import { WriteSelectors } from '../testIds';
 
 export const SignupForm: React.FC<SignupProps> = ({
   email,
@@ -40,6 +41,7 @@ export const SignupForm: React.FC<SignupProps> = ({
         onBlur={onEmailBlur}
         error={emailErrorMessage ? true : false}
         helperText={emailErrorMessage}
+        {...WriteSelectors.emailTextField}
       />
       <TextField
         margin="normal"
@@ -55,6 +57,7 @@ export const SignupForm: React.FC<SignupProps> = ({
         onBlur={onPasswordBlur}
         error={passwordErrorMessage ? true : false}
         helperText={passwordErrorMessage}
+        {...WriteSelectors.passwordTextField}
       />
       <Box display="flex" justifyContent="center">
         <LoadingButton
