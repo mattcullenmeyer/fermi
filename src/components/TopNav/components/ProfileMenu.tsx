@@ -16,6 +16,7 @@ import { resetUser } from '../../../state/slices/userSlice';
 // Other
 import { removeAuthCookies } from '../../../utils/removeAuthCookies';
 import { words } from '../words';
+import { WriteSelectors } from '../testSelectors';
 
 const { pages } = words;
 
@@ -43,7 +44,7 @@ export const ProfileMenu: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box {...WriteSelectors.profileMenu}>
       <Tooltip title={words.profileTooltip}>
         <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
           <AccountCircle sx={{ height: '1.15em', width: '1.15em' }} />
@@ -65,10 +66,18 @@ export const ProfileMenu: React.FC = () => {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        <MenuItem key="profile" onClick={onClickProfile}>
+        <MenuItem
+          key="profile"
+          onClick={onClickProfile}
+          {...WriteSelectors.profileMenuItem}
+        >
           <Typography>{pages.profile}</Typography>
         </MenuItem>
-        <MenuItem key="log-out" onClick={onClickLogout}>
+        <MenuItem
+          key="log-out"
+          onClick={onClickLogout}
+          {...WriteSelectors.logoutMenuItem}
+        >
           <Typography>{pages.logOut}</Typography>
         </MenuItem>
       </Menu>

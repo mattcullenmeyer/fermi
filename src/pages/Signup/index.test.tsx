@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '../../utils/test-utils';
 import { Signup } from './index';
 import { words } from './words';
 import { defaultProps, populatedProps } from './mock_data';
-import { BrowserRouter } from 'react-router-dom';
 
 const {
   createAccount,
@@ -15,11 +14,7 @@ const {
 
 describe('Signup', () => {
   it('should not display any error messages', () => {
-    const { queryByText } = render(
-      <BrowserRouter>
-        <Signup {...defaultProps} />
-      </BrowserRouter>
-    );
+    const { queryByText } = render(<Signup {...defaultProps} />);
 
     expect(queryByText(invalidEmail)).toBeNull();
     expect(queryByText(emailUnavailable)).toBeNull();
@@ -30,9 +25,7 @@ describe('Signup', () => {
   it('should call onFormSubmit when Create Account is clicked', () => {
     const onFormSubmit = jest.fn();
     const { getByRole } = render(
-      <BrowserRouter>
-        <Signup {...populatedProps} onFormSubmit={onFormSubmit} />
-      </BrowserRouter>
+      <Signup {...populatedProps} onFormSubmit={onFormSubmit} />
     );
 
     fireEvent.click(getByRole('button', { name: createAccount }));
@@ -42,9 +35,7 @@ describe('Signup', () => {
 
   it('should display invalid email message if it fails validator', () => {
     const { queryByText, getByRole } = render(
-      <BrowserRouter>
-        <Signup {...populatedProps} emailErrorMessage={invalidEmail} />
-      </BrowserRouter>
+      <Signup {...populatedProps} emailErrorMessage={invalidEmail} />
     );
 
     expect(getByRole('button', { name: createAccount })).toBeDisabled();
@@ -53,9 +44,7 @@ describe('Signup', () => {
 
   it('should display email unavailable message if it is already taken', () => {
     const { queryByText, getByRole } = render(
-      <BrowserRouter>
-        <Signup {...populatedProps} emailErrorMessage={emailUnavailable} />
-      </BrowserRouter>
+      <Signup {...populatedProps} emailErrorMessage={emailUnavailable} />
     );
 
     expect(getByRole('button', { name: createAccount })).toBeDisabled();
@@ -64,9 +53,7 @@ describe('Signup', () => {
 
   it('should display invalid password message if it is less than 10 characters', () => {
     const { queryByText, getByRole } = render(
-      <BrowserRouter>
-        <Signup {...populatedProps} passwordErrorMessage={invalidPassword} />
-      </BrowserRouter>
+      <Signup {...populatedProps} passwordErrorMessage={invalidPassword} />
     );
 
     expect(getByRole('button', { name: createAccount })).toBeDisabled();
@@ -75,9 +62,7 @@ describe('Signup', () => {
 
   it('should display signup error message if request failed on submit', () => {
     const { queryByText, getByRole } = render(
-      <BrowserRouter>
-        <Signup {...populatedProps} signupErrorMessage={signupErrorMessage} />
-      </BrowserRouter>
+      <Signup {...populatedProps} signupErrorMessage={signupErrorMessage} />
     );
 
     expect(getByRole('button', { name: createAccount })).toBeEnabled();

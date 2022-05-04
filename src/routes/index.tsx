@@ -1,5 +1,5 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { NavBar } from '../components/NavBar';
+import { TopNavContainer as TopNav } from '../components/TopNav/Container';
 import { Store } from '../pages/Store';
 import { Library } from '../pages/Library';
 import { LoginContainer as Login } from '../pages/Login/Container';
@@ -11,9 +11,12 @@ import { PageNotFound } from '../pages/PageNotFound';
 export const Routes = () => {
   return (
     <BrowserRouter>
-      <NavBar />
+      <TopNav />
       <Switch>
-        <Route path="/" exact component={Store} />
+        <Route path="/" exact>
+          <Redirect to="/store" />
+        </Route>
+        <Route path="/store" exact component={Store} />
         <Route path="/library" exact component={Library} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />

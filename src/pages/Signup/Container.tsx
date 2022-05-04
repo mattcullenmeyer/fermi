@@ -36,7 +36,7 @@ export const SignupContainer: React.FC = () => {
   };
 
   const onEmailBlur = async () => {
-    if (!isEmail(email)) {
+    if (email !== '' && !isEmail(email)) {
       setEmailErrorMessage(words.invalidEmail);
       return;
     }
@@ -52,7 +52,7 @@ export const SignupContainer: React.FC = () => {
   };
 
   const onPasswordBlur = () => {
-    if (password.length < 10) {
+    if (password !== '' && password.length < 10) {
       setPasswordErrorMessage(words.invalidPassword);
     }
   };
@@ -67,7 +67,7 @@ export const SignupContainer: React.FC = () => {
       password,
     });
 
-    if (response.status === 200 && response.data) {
+    if (response.status === 201 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
       history.push('/');

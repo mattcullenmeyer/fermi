@@ -12,7 +12,7 @@ import {
 // Types
 import { CryptoData, CryptoPrices } from './Container';
 // Styles
-import './index.css';
+import './index.scss';
 
 interface CryptoProps {
   cryptoData: CryptoData | null;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { words } from '../words';
+import { WriteSelectors } from '../testSelectors';
 
 const { pages } = words;
 
@@ -9,7 +10,10 @@ export const AccessButtons: React.FC = () => {
   const history = useHistory();
 
   return (
-    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+    <Box
+      sx={{ display: { xs: 'none', md: 'flex' } }}
+      {...WriteSelectors.accessButtons}
+    >
       <Box display="flex" alignItems="center" marginLeft={1}>
         <Button variant="outlined" onClick={() => history.push('/login')}>
           {pages.logIn}

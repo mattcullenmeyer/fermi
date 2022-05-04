@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import { words } from '../words';
+import { WriteSelectors } from '../testSelectors';
 
 const { pages } = words;
 
@@ -26,6 +27,7 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
         onClick={() => history.push('/')}
         color="inherit"
         sx={{ mx: 1, display: 'block' }}
+        {...WriteSelectors.storeLink}
       >
         {pages.store}
       </Button>
@@ -35,6 +37,7 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
           onClick={() => history.push('/library')}
           color="inherit"
           sx={{ mx: 1, display: 'block' }}
+          {...WriteSelectors.libraryLink}
         >
           {pages.library}
         </Button>

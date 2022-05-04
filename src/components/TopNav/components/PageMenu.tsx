@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { words } from '../words';
+import { WriteSelectors } from '../testSelectors';
 
 const { pages } = words;
 
@@ -41,7 +42,10 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
   };
 
   return (
-    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+    <Box
+      sx={{ display: { xs: 'flex', md: 'none' } }}
+      {...WriteSelectors.pageMenu}
+    >
       <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
         <MenuIcon sx={{ height: '1.15em', width: '1.15em' }} />
       </IconButton>
@@ -61,21 +65,37 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        <MenuItem key="store" onClick={onClickStore}>
+        <MenuItem
+          key="store"
+          onClick={onClickStore}
+          {...WriteSelectors.storeMenuItem}
+        >
           <Typography>{pages.store}</Typography>
         </MenuItem>
         {isLoggedIn && (
-          <MenuItem key="library" onClick={onClickLibrary}>
+          <MenuItem
+            key="library"
+            onClick={onClickLibrary}
+            {...WriteSelectors.libraryMenuItem}
+          >
             <Typography>{pages.library}</Typography>
           </MenuItem>
         )}
         {!isLoggedIn && (
-          <MenuItem key="login" onClick={onClickLogIn}>
+          <MenuItem
+            key="login"
+            onClick={onClickLogIn}
+            {...WriteSelectors.loginMenuItem}
+          >
             <Typography>{pages.logIn}</Typography>
           </MenuItem>
         )}
         {!isLoggedIn && (
-          <MenuItem key="signup" onClick={onClickSignUp}>
+          <MenuItem
+            key="signup"
+            onClick={onClickSignUp}
+            {...WriteSelectors.signupMenuItem}
+          >
             <Typography>{pages.signUp}</Typography>
           </MenuItem>
         )}
