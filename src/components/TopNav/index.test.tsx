@@ -1,24 +1,37 @@
 import React from 'react';
 import { render } from '../../utils/test-utils';
 import { TopNav } from './index';
-import { QuerySelectors } from './testIds';
+import { QuerySelectors } from './testSelectors';
+
+const {
+  loginMenuItem,
+  signupMenuItem,
+  storeMenuItem,
+  libraryMenuItem,
+  profileMenu,
+  storeLink,
+  libraryLink,
+  accessButtons,
+} = QuerySelectors;
 
 describe('TopNav', () => {
   describe('PageMenu', () => {
     it('should show login and signup menus when not logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={false} />);
 
-      expect(queryByTestId(QuerySelectors.loginMenuItem)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.signupMenuItem)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.libraryMenuItem)).toBeNull();
+      expect(queryByTestId(loginMenuItem)).toBeTruthy();
+      expect(queryByTestId(signupMenuItem)).toBeTruthy();
+      expect(queryByTestId(storeMenuItem)).toBeTruthy();
+      expect(queryByTestId(libraryMenuItem)).toBeNull();
     });
 
     it('should show library menu when logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={true} />);
 
-      expect(queryByTestId(QuerySelectors.loginMenuItem)).toBeNull();
-      expect(queryByTestId(QuerySelectors.signupMenuItem)).toBeNull();
-      expect(queryByTestId(QuerySelectors.libraryMenuItem)).toBeTruthy();
+      expect(queryByTestId(loginMenuItem)).toBeNull();
+      expect(queryByTestId(signupMenuItem)).toBeNull();
+      expect(queryByTestId(storeMenuItem)).toBeTruthy();
+      expect(queryByTestId(libraryMenuItem)).toBeTruthy();
     });
   });
 
@@ -26,15 +39,15 @@ describe('TopNav', () => {
     it('should display library link when logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={true} />);
 
-      expect(queryByTestId(QuerySelectors.storeLink)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.libraryLink)).toBeTruthy();
+      expect(queryByTestId(storeLink)).toBeTruthy();
+      expect(queryByTestId(libraryLink)).toBeTruthy();
     });
 
     it('should not display library link when not logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={false} />);
 
-      expect(queryByTestId(QuerySelectors.storeLink)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.libraryLink)).toBeNull();
+      expect(queryByTestId(storeLink)).toBeTruthy();
+      expect(queryByTestId(libraryLink)).toBeNull();
     });
   });
 
@@ -42,8 +55,8 @@ describe('TopNav', () => {
     it('should display profile menu when logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={true} />);
 
-      expect(queryByTestId(QuerySelectors.profileMenu)).toBeTruthy();
-      expect(queryByTestId(QuerySelectors.accessButtons)).toBeNull();
+      expect(queryByTestId(profileMenu)).toBeTruthy();
+      expect(queryByTestId(accessButtons)).toBeNull();
     });
   });
 
@@ -51,8 +64,8 @@ describe('TopNav', () => {
     it('should display access buttons when not logged in', () => {
       const { queryByTestId } = render(<TopNav isLoggedIn={false} />);
 
-      expect(queryByTestId(QuerySelectors.profileMenu)).toBeNull();
-      expect(queryByTestId(QuerySelectors.accessButtons)).toBeTruthy();
+      expect(queryByTestId(profileMenu)).toBeNull();
+      expect(queryByTestId(accessButtons)).toBeTruthy();
     });
   });
 });

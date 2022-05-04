@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { words } from '../words';
-import { WriteSelectors } from '../testIds';
+import { WriteSelectors } from '../testSelectors';
 
 const { pages } = words;
 

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { words } from '../words';
-import { WriteSelectors } from '../testIds';
+import { WriteSelectors } from '../testSelectors';
 
 const { pages } = words;
 

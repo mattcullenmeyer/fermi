@@ -1,4 +1,4 @@
-import { QuerySelectors } from '../../../../src/components/TopNav/testIds';
+import { QuerySelectors } from '../../../../src/components/TopNav/testSelectors';
 import { EMAIL, PASSWORD } from '../../../../src/constants/credentials';
 
 const {

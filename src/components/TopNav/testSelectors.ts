@@ -3,7 +3,7 @@ import {
   writeSelectorGenerator,
 } from '../../utils/testQueries';
 
-export const testIds = {
+const testSelectors = {
   profileMenu: null,
   accessButtons: null,
   pageMenu: null,
@@ -17,5 +17,5 @@ export const testIds = {
   logoutMenuItem: null,
 };
 
-export const WriteSelectors = writeSelectorGenerator(testIds);
-export const QuerySelectors = querySelectorGenerator(testIds);
+export const WriteSelectors = writeSelectorGenerator(testSelectors);
+export const QuerySelectors = querySelectorGenerator(testSelectors);

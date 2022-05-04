@@ -1,4 +1,4 @@
-import { QuerySelectors } from '../../../../src/pages/Signup/testIds';
+import { QuerySelectors } from '../../../../src/pages/Signup/testSelectors';
 
 const { emailTextField, passwordTextField } = QuerySelectors;
 

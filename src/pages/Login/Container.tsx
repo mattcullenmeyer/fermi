@@ -43,7 +43,7 @@ export const LoginContainer = () => {
     if (response.status === 200 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
-      history.push('/');
+      history.push('/'); // TODO: Should redirect to previous page
     } else {
       setErrorMessage(words.errorMessage);
       setIsLoading(false);

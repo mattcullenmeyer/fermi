@@ -3,11 +3,11 @@ type WriteSelectors<T> = {
 };
 
 export const writeSelectorGenerator = <T extends Record<string, null>>(
-  testIds: T
+  testSelectors: T
 ) =>
-  Object.keys(testIds)
-    .map((testId) => ({
-      [testId]: { 'data-testid': testId },
+  Object.keys(testSelectors)
+    .map((testSelector) => ({
+      [testSelector]: { 'data-testid': testSelector },
     }))
     .reduce((previousValue, currentValue) => ({
       ...previousValue,
@@ -19,11 +19,11 @@ type QuerySelectors<T> = {
 };
 
 export const querySelectorGenerator = <T extends Record<string, null>>(
-  testIds: T
+  testSelectors: T
 ) =>
-  Object.keys(testIds)
-    .map((testId) => ({
-      [testId]: testId,
+  Object.keys(testSelectors)
+    .map((testSelector) => ({
+      [testSelector]: testSelector,
     }))
     .reduce((previousValue, currentValue) => ({
       ...previousValue,

@@ -6,7 +6,7 @@ import { LoadingButton } from '@mui/lab';
 import { LoginProps } from '..';
 // Other
 import { words } from '../words';
-import { WriteSelectors } from '../testIds';
+import { WriteSelectors } from '../testSelectors';
 
 export const LoginForm: React.FC<LoginProps> = ({
   email,

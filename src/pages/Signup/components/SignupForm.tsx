@@ -5,7 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import { SignupProps } from '..';
 // Other
 import { words } from '../words';
-import { WriteSelectors } from '../testIds';
+import { WriteSelectors } from '../testSelectors';
 
 export const SignupForm: React.FC<SignupProps> = ({
   email,

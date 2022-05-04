@@ -1,12 +1,12 @@
 import { EMAIL, PASSWORD } from '../../../../src/constants/credentials';
-import { QuerySelectors } from '../../../../src/pages/Login/testIds';
+import { QuerySelectors } from '../../../../src/pages/Login/testSelectors';
 
 const { emailTextField, passwordTextField } = QuerySelectors;
 
 describe('Login', () => {
   const loginPage = '/login';
 
-  it('should redirect to home page after logging in successfully', () => {
+  it('should redirect to store page after logging in successfully', () => {
     cy.visit(loginPage);
 
     cy.getBySelector(emailTextField).type(EMAIL);
