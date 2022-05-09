@@ -61,9 +61,7 @@ export const ExpiredLink: React.FC<ExpiredLinkProps> = ({
               marginBottom: '40px',
             }}
           >
-            {expiredLink.description.firstHalf}
-            <b>{emailAddress}</b>
-            {expiredLink.description.secondHalf}
+            {expiredLink.description(emailAddress)}
           </Typography>
           <LoadingButton
             type="submit"

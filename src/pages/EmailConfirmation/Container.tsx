@@ -76,11 +76,11 @@ export const EmailConfirmationContainer: React.FC = () => {
     });
 
     if (response.status === 200) {
-      setIsButtonLoading(false);
       setNetworkRequestStatus('success');
-    } else {
       setIsButtonLoading(false);
+    } else {
       setNetworkRequestStatus('failure');
+      setIsButtonLoading(false);
     }
   };
 

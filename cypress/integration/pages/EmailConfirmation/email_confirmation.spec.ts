@@ -1,5 +1,5 @@
-import { EMAIL } from '../../../../src/constants/credentials';
 import { EmailConfirmation } from '../../../../src/pages/EmailConfirmation/Container';
+import { EMAIL } from '../../../../src/constants/credentials';
 import { words } from '../../../../src/pages/EmailConfirmation/words';
 
 describe('EmailConfirmation', () => {
@@ -25,11 +25,10 @@ describe('EmailConfirmation', () => {
     });
 
     cy.contains(words.confirmEmail.button).click();
-
     cy.contains(words.confirmEmail.successMessage);
   });
 
-  it('should resend email confirmation if key is expired on button click', () => {
+  it('if key is expired, should resend email confirmation on button click', () => {
     cy.intercept('GET', `**/email-confirmation/${confirmationKey}`, {
       statusCode: 200,
       body: {
@@ -46,7 +45,6 @@ describe('EmailConfirmation', () => {
     });
 
     cy.contains(words.expiredLink.button).click();
-
     cy.contains(words.expiredLink.successMessage);
   });
 });

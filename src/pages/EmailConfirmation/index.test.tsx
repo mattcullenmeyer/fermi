@@ -50,7 +50,7 @@ describe('EmailConfirmation', () => {
     });
   });
 
-  describe('Expired Link', () => {
+  describe('ExpiredLink', () => {
     it('should display expired link page without any alerts on initial load', () => {
       const { queryByText } = render(
         <EmailConfirmation {...defaultProps} isExpiredLink={true} />

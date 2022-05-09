@@ -61,9 +61,7 @@ export const ConfirmEmail: React.FC<ConfirmEmailProps> = ({
               marginBottom: '40px',
             }}
           >
-            {confirmEmail.description.firstHalf}
-            <b>{emailAddress}</b>
-            {confirmEmail.description.secondHalf}
+            {confirmEmail.description(emailAddress)}
           </Typography>
           <LoadingButton
             type="submit"
