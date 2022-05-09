@@ -7,6 +7,7 @@ export type NetworkRequestStatus = 'unrequested' | 'success' | 'failure';
 
 export const EmailConfirmationContainer: React.FC = () => {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [isInitialLoadFalure, setIsInitialLoadFailure] = useState(false);
   const [isExpiredLink, setIsExpiredLink] = useState(false);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [networkRequestStatus, setNetworkRequestStatus] =
@@ -31,7 +32,7 @@ export const EmailConfirmationContainer: React.FC = () => {
 
   const getEmailAddress = async (key: string) => {
     const response = await useAxios<EmailConfirmation>({
-      path: `user/confirmation/${key}`,
+      path: `email-confirmation/${key}`,
       method: RequestTypes.Get,
     });
 
@@ -40,7 +41,7 @@ export const EmailConfirmationContainer: React.FC = () => {
       setIsExpiredLink(response.data.key_expired);
       setIsInitialLoading(false);
     } else {
-      setNetworkRequestStatus('failure');
+      setIsInitialLoadFailure(true);
       setIsInitialLoading(false);
     }
   };
@@ -86,6 +87,7 @@ export const EmailConfirmationContainer: React.FC = () => {
   return (
     <EmailConfirmation
       isInitialLoading={isInitialLoading}
+      isInitialLoadFailure={isInitialLoadFalure}
       isExpiredLink={isExpiredLink}
       isButtonLoading={isButtonLoading}
       networkRequestStatus={networkRequestStatus}

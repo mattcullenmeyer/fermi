@@ -6,6 +6,7 @@ import { ExpiredLink } from './components/ExpiredLink';
 
 export interface EmailConfirmationProps {
   isInitialLoading: boolean;
+  isInitialLoadFailure: boolean;
   isExpiredLink: boolean;
   isButtonLoading: boolean;
   networkRequestStatus: NetworkRequestStatus;
@@ -16,6 +17,7 @@ export interface EmailConfirmationProps {
 
 export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
   isInitialLoading,
+  isInitialLoadFailure,
   isExpiredLink,
   isButtonLoading,
   networkRequestStatus,
@@ -25,6 +27,13 @@ export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
 }) => {
   if (isInitialLoading) {
     return <Loader />;
+  }
+
+  if (isInitialLoadFailure) {
+    // TODO: Add error card here
+    return (
+      <>This email verification link isn't valid or something went wrong.</>
+    );
   }
 
   if (isExpiredLink) {
