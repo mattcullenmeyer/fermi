@@ -5,6 +5,11 @@ import useAxios, { RequestTypes } from '../../services/useAxios';
 
 export type NetworkRequestStatus = 'unrequested' | 'success' | 'failure';
 
+export interface EmailConfirmation {
+  email_address: string;
+  key_expired: boolean;
+}
+
 export const EmailConfirmationContainer: React.FC = () => {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isInitialLoadFalure, setIsInitialLoadFailure] = useState(false);
@@ -24,11 +29,6 @@ export const EmailConfirmationContainer: React.FC = () => {
       getEmailAddress(key);
     }
   }, [key]);
-
-  interface EmailConfirmation {
-    email_address: string;
-    key_expired: boolean;
-  }
 
   const getEmailAddress = async (key: string) => {
     const response = await useAxios<EmailConfirmation>({
