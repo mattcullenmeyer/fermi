@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { TopNav, TopNavProps } from './index';
 
 export default {
-  title: 'TopNav',
+  title: 'Components/TopNav',
   component: TopNav,
 } as Meta;
 

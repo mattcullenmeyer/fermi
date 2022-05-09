@@ -4,7 +4,7 @@ import { words } from './words';
 import { defaultProps, populatedProps } from './mock_data';
 
 export default {
-  title: 'Login',
+  title: 'Pages/Login',
   component: Login,
 } as Meta;
 
