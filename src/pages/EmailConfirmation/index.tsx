@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader } from '../../components/Loader';
+import { PageLoader } from '../../components/PageLoader';
 import { NetworkRequestStatus } from './Container';
 import { ConfirmEmail } from './components/ConfirmEmail';
 import { ExpiredLink } from './components/ExpiredLink';
@@ -26,7 +26,7 @@ export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
   onClickResendEmail,
 }) => {
   if (isInitialLoading) {
-    return <Loader />;
+    return <PageLoader />;
   }
 
   if (isInitialLoadFailure) {
