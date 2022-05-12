@@ -3,6 +3,7 @@ import { Box, Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { words } from '../words';
 import { WriteSelectors } from '../testSelectors';
+import { setRedirectPath } from '../../../utils/setRedirectPath';
 
 const { pages } = words;
 
@@ -15,7 +16,10 @@ export const AccessButtons: React.FC = () => {
       {...WriteSelectors.accessButtons}
     >
       <Box display="flex" alignItems="center" marginLeft={1}>
-        <Button variant="outlined" onClick={() => history.push('/login')}>
+        <Button
+          variant="outlined"
+          onClick={() => history.push(setRedirectPath('/login'))}
+        >
           {pages.logIn}
         </Button>
       </Box>
