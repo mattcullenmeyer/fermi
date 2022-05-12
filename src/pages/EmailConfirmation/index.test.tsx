@@ -4,14 +4,24 @@ import { EmailConfirmation } from '.';
 import { defaultProps } from './mock_data';
 import { words } from './words';
 
-const { confirmEmail, expiredLink } = words;
+const { confirmEmail, expiredLink, initialLoadFailure } = words;
 
 describe('EmailConfirmation', () => {
+  describe('ErrorCard', () => {
+    it('should display error card if confirmation key does not exist', () => {
+      const { queryByText } = render(
+        <EmailConfirmation {...defaultProps} isInitialLoadFailure={true} />
+      );
+
+      expect(queryByText(initialLoadFailure.description)).toBeVisible();
+    });
+  });
+
   describe('ConfirmEmail', () => {
     it('should display email confirm page without any alerts on initial load', () => {
       const { queryByText } = render(<EmailConfirmation {...defaultProps} />);
 
-      expect(queryByText(confirmEmail.heading)).toBeTruthy();
+      expect(queryByText(confirmEmail.heading)).toBeVisible();
       expect(queryByText(confirmEmail.successMessage)).toBeNull();
       expect(queryByText(confirmEmail.failureMessage)).toBeNull();
     });
@@ -34,8 +44,8 @@ describe('EmailConfirmation', () => {
         <EmailConfirmation {...defaultProps} networkRequestStatus="success" />
       );
 
-      expect(queryByText(confirmEmail.heading)).toBeTruthy();
-      expect(queryByText(confirmEmail.successMessage)).toBeTruthy();
+      expect(queryByText(confirmEmail.heading)).toBeVisible();
+      expect(queryByText(confirmEmail.successMessage)).toBeVisible();
       expect(queryByText(confirmEmail.failureMessage)).toBeNull();
     });
 
@@ -44,9 +54,9 @@ describe('EmailConfirmation', () => {
         <EmailConfirmation {...defaultProps} networkRequestStatus="failure" />
       );
 
-      expect(queryByText(confirmEmail.heading)).toBeTruthy();
+      expect(queryByText(confirmEmail.heading)).toBeVisible();
       expect(queryByText(confirmEmail.successMessage)).toBeNull();
-      expect(queryByText(confirmEmail.failureMessage)).toBeTruthy();
+      expect(queryByText(confirmEmail.failureMessage)).toBeVisible();
     });
   });
 
@@ -56,7 +66,7 @@ describe('EmailConfirmation', () => {
         <EmailConfirmation {...defaultProps} isExpiredLink={true} />
       );
 
-      expect(queryByText(expiredLink.heading)).toBeTruthy();
+      expect(queryByText(expiredLink.heading)).toBeVisible();
       expect(queryByText(expiredLink.successMessage)).toBeNull();
       expect(queryByText(expiredLink.failureMessage)).toBeNull();
     });
@@ -84,8 +94,8 @@ describe('EmailConfirmation', () => {
         />
       );
 
-      expect(queryByText(expiredLink.heading)).toBeTruthy();
-      expect(queryByText(expiredLink.successMessage)).toBeTruthy();
+      expect(queryByText(expiredLink.heading)).toBeVisible();
+      expect(queryByText(expiredLink.successMessage)).toBeVisible();
       expect(queryByText(expiredLink.failureMessage)).toBeNull();
     });
 
@@ -98,9 +108,9 @@ describe('EmailConfirmation', () => {
         />
       );
 
-      expect(queryByText(expiredLink.heading)).toBeTruthy();
+      expect(queryByText(expiredLink.heading)).toBeVisible();
       expect(queryByText(expiredLink.successMessage)).toBeNull();
-      expect(queryByText(expiredLink.failureMessage)).toBeTruthy();
+      expect(queryByText(expiredLink.failureMessage)).toBeVisible();
     });
   });
 });

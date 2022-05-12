@@ -33,4 +33,8 @@ export const words = {
     failureMessage:
       'Sorry, we were unable to resend a confirmation email. Please try again later.',
   },
+  initialLoadFailure: {
+    description:
+      'This email verification link does not exist or something went wrong.',
+  },
 };

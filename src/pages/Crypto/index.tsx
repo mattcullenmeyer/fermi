@@ -9,7 +9,7 @@ import {
   Typography,
   Chip,
 } from '@mui/material';
-import { Loader } from '../../components/Loader';
+import { PageLoader } from '../../components/PageLoader';
 // Types
 import { CryptoData, CryptoPrices } from './Container';
 // Styles
@@ -22,7 +22,7 @@ interface CryptoProps {
 
 export const Crypto: React.FC<CryptoProps> = ({ cryptoData, cryptoPrices }) => {
   if (!cryptoData || !cryptoPrices) {
-    return <Loader />;
+    return <PageLoader />;
   }
 
   const data = {
