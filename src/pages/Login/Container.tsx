@@ -11,10 +11,12 @@ import { userLogin } from '../../services/userLogin';
 import { words } from './words';
 // Utils
 import { setAuthCookies } from '../../utils/setAuthCookies';
+import { getRedirectPath } from '../../utils/getRedirectPath';
 
 export const LoginContainer = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const redirectPath = getRedirectPath();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,7 +45,11 @@ export const LoginContainer = () => {
     if (response.status === 200 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
-      history.push('/'); // TODO: Should redirect to previous page
+      if (redirectPath) {
+        history.push(redirectPath);
+      } else {
+        history.push('/');
+      }
     } else {
       setErrorMessage(words.errorMessage);
       setIsLoading(false);
