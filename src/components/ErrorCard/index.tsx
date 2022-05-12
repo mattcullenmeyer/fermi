@@ -36,9 +36,9 @@ export const ErrorCard: React.FC<ErrorCardProps> = ({
           </Typography>
           <Typography
             component="div"
-            variant="h6"
+            variant="body1"
             sx={{
-              fontWeight: '300',
+              fontSize: '1.1rem',
               textAlign: 'center',
               marginBottom: '40px',
             }}

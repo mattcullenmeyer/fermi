@@ -35,6 +35,6 @@ export const words = {
   },
   initialLoadFailure: {
     description:
-      'This email confirmation key does not exist or something went wrong.',
+      'This email verification link does not exist or something went wrong.',
   },
 };
