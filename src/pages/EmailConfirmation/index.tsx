@@ -3,6 +3,10 @@ import { PageLoader } from '../../components/PageLoader';
 import { NetworkRequestStatus } from './Container';
 import { ConfirmEmail } from './components/ConfirmEmail';
 import { ExpiredLink } from './components/ExpiredLink';
+import { ErrorCard } from '../../components/ErrorCard';
+import { words } from './words';
+
+const { initialLoadFailure } = words;
 
 export interface EmailConfirmationProps {
   isInitialLoading: boolean;
@@ -30,10 +34,7 @@ export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
   }
 
   if (isInitialLoadFailure) {
-    // TODO: Add error card here
-    return (
-      <>This email verification link isn't valid or something went wrong.</>
-    );
+    return <ErrorCard description={initialLoadFailure.description} />;
   }
 
   if (isExpiredLink) {
