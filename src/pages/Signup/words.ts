@@ -4,8 +4,8 @@ export const words = {
   login: 'Log in',
   invalidEmail: 'The email address you entered is not valid.',
   emailUnavailable: 'That email address is already taken. Please try another.',
-  usernameUnavailable: 'That username is already taken. Please try another.',
   invalidUsername: 'Your username must have a least 3 characters',
+  usernameUnavailable: 'That username is already taken. Please try another.',
   invalidPassword: 'Your password must have at least 10 characters.',
   createAccount: 'Create Account',
   signupErrorMessage:

@@ -49,7 +49,7 @@ describe('Signup', () => {
     const { queryByText, getByRole } = render(
       <Signup
         {...populatedProps}
-        passwordErrorMessage={words.invalidUsername}
+        usernameErrorMessage={words.invalidUsername}
       />
     );
 
