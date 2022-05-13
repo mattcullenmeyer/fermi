@@ -33,6 +33,18 @@ EmailUnavailable.args = {
   emailErrorMessage: words.emailUnavailable,
 };
 
+export const InvalidUsername = Template.bind({});
+InvalidUsername.args = {
+  ...populatedProps,
+  usernameErrorMessage: words.invalidUsername,
+};
+
+export const UsernameUnavailable = Template.bind({});
+UsernameUnavailable.args = {
+  ...populatedProps,
+  usernameErrorMessage: words.usernameUnavailable,
+};
+
 export const InvalidPassword = Template.bind({});
 InvalidPassword.args = {
   ...populatedProps,

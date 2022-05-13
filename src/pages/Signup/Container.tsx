@@ -19,8 +19,10 @@ export const SignupContainer: React.FC = () => {
   const history = useHistory();
 
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [signupErrorMessage, setSignupErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +30,11 @@ export const SignupContainer: React.FC = () => {
   const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
     setEmailErrorMessage('');
+  };
+
+  const onUsernameChange = (event: React.FocusEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+    setUsernameErrorMessage('');
   };
 
   const onPasswordChange = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -51,6 +58,22 @@ export const SignupContainer: React.FC = () => {
     }
   };
 
+  const onUsernameBlur = async () => {
+    if (username !== '' && username.length < 3) {
+      setUsernameErrorMessage(words.invalidUsername);
+      return;
+    }
+
+    const response = await useAxios({
+      path: `signup/username/${username}`,
+      method: RequestTypes.Get,
+    });
+
+    if (response.status === 200) {
+      setUsernameErrorMessage(words.usernameUnavailable);
+    }
+  };
+
   const onPasswordBlur = () => {
     if (password !== '' && password.length < 10) {
       setPasswordErrorMessage(words.invalidPassword);
@@ -59,11 +82,28 @@ export const SignupContainer: React.FC = () => {
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    onEmailBlur();
+    onUsernameBlur();
+    onPasswordBlur();
+
+    const isInvalidData =
+      email === '' ||
+      username === '' ||
+      password === '' ||
+      emailErrorMessage !== '' ||
+      usernameErrorMessage !== '' ||
+      passwordErrorMessage !== '';
+
+    if (isInvalidData) {
+      return;
+    }
+
     setIsLoading(true);
 
     const response = await userSignup({
       email,
-      username: email,
+      username,
       password,
     });
 
@@ -80,13 +120,17 @@ export const SignupContainer: React.FC = () => {
   return (
     <Signup
       email={email}
+      username={username}
       password={password}
       signupErrorMessage={signupErrorMessage}
       emailErrorMessage={emailErrorMessage}
+      usernameErrorMessage={usernameErrorMessage}
       passwordErrorMessage={passwordErrorMessage}
       onEmailChange={onEmailChange}
+      onUsernameChange={onUsernameChange}
       onPasswordChange={onPasswordChange}
       onEmailBlur={onEmailBlur}
+      onUsernameBlur={onUsernameBlur}
       onPasswordBlur={onPasswordBlur}
       onFormSubmit={onFormSubmit}
       isLoading={isLoading}

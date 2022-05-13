@@ -9,17 +9,29 @@ import { WriteSelectors } from '../testSelectors';
 
 export const SignupForm: React.FC<SignupProps> = ({
   email,
+  username,
   password,
   signupErrorMessage,
   emailErrorMessage,
+  usernameErrorMessage,
   passwordErrorMessage,
   onEmailChange,
+  onUsernameChange,
   onPasswordChange,
   onEmailBlur,
+  onUsernameBlur,
   onPasswordBlur,
   onFormSubmit,
   isLoading,
 }) => {
+  const isButtonDisabled =
+    email === '' ||
+    username === '' ||
+    password === '' ||
+    emailErrorMessage !== '' ||
+    usernameErrorMessage !== '' ||
+    passwordErrorMessage !== '';
+
   return (
     <Box component="form" onSubmit={onFormSubmit} noValidate>
       {signupErrorMessage && (
@@ -34,7 +46,6 @@ export const SignupForm: React.FC<SignupProps> = ({
         id="email"
         label="Email"
         name="email"
-        autoComplete="email"
         autoFocus
         value={email}
         onChange={onEmailChange}
@@ -47,11 +58,25 @@ export const SignupForm: React.FC<SignupProps> = ({
         margin="normal"
         required
         fullWidth
+        id="username"
+        label="Username"
+        name="username"
+        value={username}
+        onChange={onUsernameChange}
+        onBlur={onUsernameBlur}
+        error={usernameErrorMessage ? true : false}
+        helperText={usernameErrorMessage}
+        {...WriteSelectors.usernameTextField}
+      />
+      <TextField
+        margin="normal"
+        autoComplete="new-password"
+        required
+        fullWidth
         id="password"
         label="Password"
         name="password"
         type="password"
-        autoComplete="current-password"
         value={password}
         onChange={onPasswordChange}
         onBlur={onPasswordBlur}
@@ -65,7 +90,7 @@ export const SignupForm: React.FC<SignupProps> = ({
           variant="contained"
           sx={{ mt: 4, pt: 1, pr: 7, pb: 1, pl: 7 }}
           size="large"
-          disabled={emailErrorMessage || passwordErrorMessage ? true : false}
+          disabled={isButtonDisabled}
           loading={isLoading}
         >
           {words.createAccount}

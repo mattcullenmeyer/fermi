@@ -1,6 +1,11 @@
+import {
+  EMAIL,
+  PASSWORD,
+  USERNAME,
+} from '../../../../src/constants/credentials';
 import { QuerySelectors } from '../../../../src/pages/Signup/testSelectors';
 
-const { emailTextField, passwordTextField } = QuerySelectors;
+const { emailTextField, usernameTextField, passwordTextField } = QuerySelectors;
 
 describe('Signup', () => {
   const signupPage = '/signup';
@@ -11,9 +16,13 @@ describe('Signup', () => {
     cy.intercept('GET', '**/signup/email/*', {
       statusCode: 404,
     });
+    cy.intercept('GET', '**/signup/username/*', {
+      statusCode: 404,
+    });
 
-    cy.getBySelector(emailTextField).type('new_user_email@example.com');
-    cy.getBySelector(passwordTextField).type('new_user_password');
+    cy.getBySelector(emailTextField).type(EMAIL);
+    cy.getBySelector(usernameTextField).type(USERNAME);
+    cy.getBySelector(passwordTextField).type(PASSWORD);
 
     cy.intercept('POST', '**/signup', {
       statusCode: 201,
