@@ -38,7 +38,7 @@ export const LoginContainer = () => {
 
     const response = await userLogin({
       email,
-      username: email,
+      // username: email,
       password,
     });
 

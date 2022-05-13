@@ -9,13 +9,17 @@ import './index.scss';
 
 export interface SignupProps {
   email: string;
+  username: string;
   password: string;
   signupErrorMessage: string;
   emailErrorMessage: string;
+  usernameErrorMessage: string;
   passwordErrorMessage: string;
   onEmailChange: (event: FocusEvent<HTMLInputElement>) => void;
+  onUsernameChange: (event: FocusEvent<HTMLInputElement>) => void;
   onPasswordChange: (event: FocusEvent<HTMLInputElement>) => void;
   onEmailBlur: () => void;
+  onUsernameBlur: () => void;
   onPasswordBlur: () => void;
   onFormSubmit: (event: FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
@@ -23,13 +27,17 @@ export interface SignupProps {
 
 export const Signup: React.FC<SignupProps> = ({
   email,
+  username,
   password,
   signupErrorMessage,
   emailErrorMessage,
+  usernameErrorMessage,
   passwordErrorMessage,
   onEmailChange,
+  onUsernameChange,
   onPasswordChange,
   onEmailBlur,
+  onUsernameBlur,
   onPasswordBlur,
   onFormSubmit,
   isLoading,
@@ -44,13 +52,17 @@ export const Signup: React.FC<SignupProps> = ({
           <SignupHeading />
           <SignupForm
             email={email}
+            username={username}
             password={password}
             signupErrorMessage={signupErrorMessage}
             emailErrorMessage={emailErrorMessage}
+            usernameErrorMessage={usernameErrorMessage}
             passwordErrorMessage={passwordErrorMessage}
             onEmailChange={onEmailChange}
+            onUsernameChange={onUsernameChange}
             onPasswordChange={onPasswordChange}
             onEmailBlur={onEmailBlur}
+            onUsernameBlur={onUsernameBlur}
             onPasswordBlur={onPasswordBlur}
             onFormSubmit={onFormSubmit}
             isLoading={isLoading}

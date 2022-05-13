@@ -5,6 +5,7 @@ import {
 
 export const testSelectors = {
   emailTextField: null,
+  usernameTextField: null,
   passwordTextField: null,
 };
 

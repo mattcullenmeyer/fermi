@@ -3,13 +3,13 @@ import { DjRestAuthData } from '../types/authentication';
 
 export interface LoginParameters {
   email: string;
-  username: string;
+  // username: string;
   password: string;
 }
 
 export const userLogin = async ({
   email,
-  username,
+  // username,
   password,
 }: LoginParameters): Promise<ResponseBody<DjRestAuthData>> => {
   const response = await useAxios<DjRestAuthData>({
@@ -17,7 +17,7 @@ export const userLogin = async ({
     method: RequestTypes.Post,
     data: {
       email,
-      username,
+      // username,
       password,
     },
   });
