@@ -14,6 +14,7 @@ describe('Signup', () => {
     expect(queryByText(words.usernameUnavailable)).toBeNull();
     expect(queryByText(words.invalidPassword)).toBeNull();
     expect(queryByText(words.signupErrorMessage)).toBeNull();
+    expect(queryByText(words.passwordRequirement)).toBeVisible();
   });
 
   it('should call onFormSubmit when Create Account is clicked', () => {
@@ -69,7 +70,7 @@ describe('Signup', () => {
     expect(queryByText(words.usernameUnavailable)).toBeVisible();
   });
 
-  it('should display invalid password message if it is less than 10 characters', () => {
+  it('should display invalid password message if it does not meet requirements', () => {
     const { queryByText, getByRole } = render(
       <Signup
         {...populatedProps}
@@ -79,6 +80,7 @@ describe('Signup', () => {
 
     expect(getByRole('button', { name: words.createAccount })).toBeDisabled();
     expect(queryByText(words.invalidPassword)).toBeVisible();
+    expect(queryByText(words.passwordRequirement)).toBeNull();
   });
 
   it('should display signup error message if request failed on submit', () => {
