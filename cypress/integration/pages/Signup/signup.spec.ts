@@ -4,6 +4,7 @@ import {
   USERNAME,
 } from '../../../../src/constants/credentials';
 import { QuerySelectors } from '../../../../src/pages/Signup/testSelectors';
+import { words } from '../../../../src/pages/Signup/words';
 
 const { emailTextField, usernameTextField, passwordTextField } = QuerySelectors;
 
@@ -33,6 +34,8 @@ describe('Signup', () => {
     });
 
     cy.get('button[type=submit]').click();
+
+    cy.contains(words.signupSuccessCard.buttonText).click();
 
     // cy.url().should('equal', `${Cypress.config().baseUrl}/`);
     cy.url().should('contain', '/store');
