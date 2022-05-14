@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import isEmail from 'validator/lib/isEmail';
+import validator from 'validator';
 // State
 import { useAppDispatch } from '../../state/store';
 import { fetchUser } from '../../state/slices/userSlice';
@@ -43,7 +43,7 @@ export const SignupContainer: React.FC = () => {
   };
 
   const onEmailBlur = async () => {
-    if (email !== '' && !isEmail(email)) {
+    if (email !== '' && !validator.isEmail(email)) {
       setEmailErrorMessage(words.invalidEmail);
       return;
     }
@@ -75,7 +75,13 @@ export const SignupContainer: React.FC = () => {
   };
 
   const onPasswordBlur = () => {
-    if (password !== '' && password.length < 10) {
+    if (
+      password !== '' &&
+      !validator.isStrongPassword(password, {
+        minLowercase: 0,
+        minUppercase: 0,
+      })
+    ) {
       setPasswordErrorMessage(words.invalidPassword);
     }
   };

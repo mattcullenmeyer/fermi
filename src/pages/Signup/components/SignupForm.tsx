@@ -81,7 +81,11 @@ export const SignupForm: React.FC<SignupProps> = ({
         onChange={onPasswordChange}
         onBlur={onPasswordBlur}
         error={passwordErrorMessage ? true : false}
-        helperText={passwordErrorMessage}
+        helperText={
+          passwordErrorMessage
+            ? passwordErrorMessage
+            : words.passwordRequirement
+        }
         {...WriteSelectors.passwordTextField}
       />
       <Box display="flex" justifyContent="center">
