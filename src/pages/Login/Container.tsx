@@ -45,7 +45,8 @@ export const LoginContainer = () => {
     if (response.status === 200 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
-      if (redirectPath) {
+
+      if (redirectPath && redirectPath !== '/login') {
         history.push(redirectPath);
       } else {
         history.push('/');

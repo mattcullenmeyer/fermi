@@ -1,5 +1,5 @@
 import { EmailConfirmation } from '../../../../src/pages/EmailConfirmation/Container';
-import { EMAIL } from '../../../../src/constants/credentials';
+import { EMAIL, PASSWORD } from '../../../../src/constants/credentials';
 import { words } from '../../../../src/pages/EmailConfirmation/words';
 
 describe('EmailConfirmation', () => {
@@ -28,7 +28,9 @@ describe('EmailConfirmation', () => {
     cy.contains(words.confirmEmail.successMessage);
   });
 
-  it('if key is expired, should resend email confirmation on button click', () => {
+  it('if logged in and key is expired, should resend email confirmation on clicking resend button', () => {
+    cy.login(EMAIL, PASSWORD);
+
     cy.intercept('GET', `**/email-confirmation/${confirmationKey}`, {
       statusCode: 200,
       body: {
@@ -44,7 +46,28 @@ describe('EmailConfirmation', () => {
       statusCode: 200,
     });
 
-    cy.contains(words.expiredLink.button).click();
+    cy.contains(words.expiredLink.resendButton).click();
     cy.contains(words.expiredLink.successMessage);
+  });
+
+  it('if not logged in and key is expired, should redirect to login page on clicking Log In button', () => {
+    cy.intercept('GET', `**/email-confirmation/${confirmationKey}`, {
+      statusCode: 200,
+      body: {
+        ...emailConfrimationResponse,
+        key_expired: true,
+      },
+    });
+
+    cy.visit(emailConfirmationPage);
+    cy.contains(EMAIL);
+
+    cy.intercept('POST', '**/resend-email', {
+      statusCode: 200,
+    });
+
+    cy.contains(words.expiredLink.resendButton).should('be.disabled');
+    cy.contains(words.expiredLink.loginButton).click();
+    cy.url().should('contain', '/login');
   });
 });

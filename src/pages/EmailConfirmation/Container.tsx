@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { EmailConfirmation } from '.';
+import { useLoginStatus } from '../../hooks/useLoginStatus';
 import useAxios, { RequestTypes } from '../../services/useAxios';
 
 export type NetworkRequestStatus = 'unrequested' | 'success' | 'failure';
@@ -18,6 +19,7 @@ export const EmailConfirmationContainer: React.FC = () => {
   const [networkRequestStatus, setNetworkRequestStatus] =
     useState<NetworkRequestStatus>('unrequested');
   const [emailAddress, setEmailAddress] = useState('');
+  const isLoggedIn = useLoginStatus();
 
   interface Params {
     key: string;
@@ -94,6 +96,7 @@ export const EmailConfirmationContainer: React.FC = () => {
       emailAddress={emailAddress}
       onClickConfirmEmail={onClickConfirmEmail}
       onClickResendEmail={onClickResendEmail}
+      isLoggedIn={isLoggedIn}
     />
   );
 };

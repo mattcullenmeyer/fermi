@@ -1,9 +1,11 @@
 import React from 'react';
-import { Alert, Box, Container, Typography } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { Alert, Box, Button, Container, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import MarkEmailReadOutlinedIcon from '@mui/icons-material/MarkEmailReadOutlined';
 import { EmailConfirmationProps } from '..';
 import { words } from '../words';
+import { setRedirectPath } from '../../../utils/setRedirectPath';
 
 const { expiredLink } = words;
 
@@ -13,6 +15,7 @@ export type ExpiredLinkProps = Pick<
   | 'networkRequestStatus'
   | 'emailAddress'
   | 'onClickResendEmail'
+  | 'isLoggedIn'
 >;
 
 export const ExpiredLink: React.FC<ExpiredLinkProps> = ({
@@ -20,9 +23,29 @@ export const ExpiredLink: React.FC<ExpiredLinkProps> = ({
   networkRequestStatus,
   emailAddress,
   onClickResendEmail,
+  isLoggedIn,
 }) => {
+  const history = useHistory();
+
   return (
     <>
+      {!isLoggedIn && (
+        <Alert
+          severity="warning"
+          sx={{ justifyContent: 'center', alignItems: 'center' }}
+        >
+          {expiredLink.loginMessage}
+          <Button
+            variant="contained"
+            color="warning"
+            size="small"
+            sx={{ marginLeft: '10px' }}
+            onClick={() => history.push(setRedirectPath('/login'))}
+          >
+            {expiredLink.loginButton}
+          </Button>
+        </Alert>
+      )}
       {networkRequestStatus === 'success' && (
         <Alert severity="success" sx={{ justifyContent: 'center' }}>
           {expiredLink.successMessage}
@@ -48,7 +71,11 @@ export const ExpiredLink: React.FC<ExpiredLinkProps> = ({
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontWeight: '600', marginBottom: '25px' }}
+            sx={{
+              fontWeight: '600',
+              marginBottom: '25px',
+              textAlign: 'center',
+            }}
           >
             {expiredLink.heading}
           </Typography>
@@ -70,8 +97,9 @@ export const ExpiredLink: React.FC<ExpiredLinkProps> = ({
             sx={{ pt: 1, pr: 7, pb: 1, pl: 7, marginBottom: '25px' }}
             onClick={onClickResendEmail}
             loading={isButtonLoading}
+            disabled={!isLoggedIn}
           >
-            {expiredLink.button}
+            {expiredLink.resendButton}
           </LoadingButton>
         </Box>
       </Container>

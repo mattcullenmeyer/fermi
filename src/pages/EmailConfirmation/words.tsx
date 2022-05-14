@@ -28,10 +28,12 @@ export const words = {
         </>
       );
     },
-    button: 'Resend Confirmation Email',
+    resendButton: 'Resend Confirmation Email',
     successMessage: 'Your confirmation email was resent successfully.',
     failureMessage:
       'Sorry, we were unable to resend a confirmation email. Please try again later.',
+    loginMessage: 'You must be logged in to resend.',
+    loginButton: 'Log In',
   },
   initialLoadFailure: {
     description:

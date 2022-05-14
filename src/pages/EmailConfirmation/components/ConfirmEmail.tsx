@@ -48,7 +48,11 @@ export const ConfirmEmail: React.FC<ConfirmEmailProps> = ({
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontWeight: '600', marginBottom: '25px' }}
+            sx={{
+              fontWeight: '600',
+              marginBottom: '25px',
+              textAlign: 'center',
+            }}
           >
             {confirmEmail.heading}
           </Typography>
