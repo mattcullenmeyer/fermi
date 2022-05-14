@@ -10,7 +10,7 @@ export const words = {
     'Your password must contain at least 8 characters, one number and one symbol.',
   createAccount: 'Create Account',
   passwordRequirement:
-    'For your secruity, passwords must contain at least 8 characters, one number and one symbol.',
+    'For your security, passwords must contain at least 8 characters, one number and one symbol.',
   signupErrorMessage:
     'Sorry, we were unable to create your account. Please try again later.',
   promoHeading: 'Welcome to',
