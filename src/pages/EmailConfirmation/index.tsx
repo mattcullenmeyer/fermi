@@ -17,6 +17,7 @@ export interface EmailConfirmationProps {
   emailAddress: string;
   onClickConfirmEmail: () => void;
   onClickResendEmail: () => void;
+  isLoggedIn: boolean;
 }
 
 export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
@@ -28,6 +29,7 @@ export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
   emailAddress,
   onClickConfirmEmail,
   onClickResendEmail,
+  isLoggedIn,
 }) => {
   if (isInitialLoading) {
     return <PageLoader />;
@@ -44,6 +46,7 @@ export const EmailConfirmation: React.FC<EmailConfirmationProps> = ({
         networkRequestStatus={networkRequestStatus}
         emailAddress={emailAddress}
         onClickResendEmail={onClickResendEmail}
+        isLoggedIn={isLoggedIn}
       />
     );
   }

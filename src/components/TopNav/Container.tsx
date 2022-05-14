@@ -1,10 +1,8 @@
 import { TopNav } from './index';
-import { useAppSelector } from '../../state/store';
-import { RequestStatus } from '../../state/requestStatusTypes';
+import { useLoginStatus } from '../../hooks/useLoginStatus';
 
 export const TopNavContainer = () => {
-  const { user } = useAppSelector((state) => state);
-  const isLoggedIn = user.status === RequestStatus.Success;
+  const isLoggedIn = useLoginStatus();
 
   return <TopNav isLoggedIn={isLoggedIn} />;
 };

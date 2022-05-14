@@ -10,4 +10,5 @@ export const defaultProps: EmailConfirmationProps = {
   emailAddress: EMAIL,
   onClickConfirmEmail: () => {},
   onClickResendEmail: () => {},
+  isLoggedIn: true,
 };

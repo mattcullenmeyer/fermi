@@ -47,3 +47,10 @@ ExpiredLinkFailure.args = {
   isExpiredLink: true,
   networkRequestStatus: 'failure',
 };
+
+export const ExpiredLinkDisabled = Template.bind({});
+ExpiredLinkDisabled.args = {
+  ...defaultProps,
+  isExpiredLink: true,
+  isLoggedIn: false,
+};

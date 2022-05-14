@@ -62,13 +62,17 @@ describe('EmailConfirmation', () => {
 
   describe('ExpiredLink', () => {
     it('should display expired link page without any alerts on initial load', () => {
-      const { queryByText } = render(
+      const { queryByText, getByRole } = render(
         <EmailConfirmation {...defaultProps} isExpiredLink={true} />
       );
 
       expect(queryByText(expiredLink.heading)).toBeVisible();
       expect(queryByText(expiredLink.successMessage)).toBeNull();
       expect(queryByText(expiredLink.failureMessage)).toBeNull();
+      expect(queryByText(expiredLink.loginMessage)).toBeNull();
+      expect(
+        getByRole('button', { name: expiredLink.resendButton })
+      ).toBeEnabled();
     });
 
     it('should call onClickResendEmail when button is clicked', () => {
@@ -81,7 +85,7 @@ describe('EmailConfirmation', () => {
         />
       );
 
-      fireEvent.click(getByRole('button', { name: expiredLink.button }));
+      fireEvent.click(getByRole('button', { name: expiredLink.resendButton }));
       expect(onClickResendEmail).toHaveBeenCalled();
     });
 
@@ -97,6 +101,7 @@ describe('EmailConfirmation', () => {
       expect(queryByText(expiredLink.heading)).toBeVisible();
       expect(queryByText(expiredLink.successMessage)).toBeVisible();
       expect(queryByText(expiredLink.failureMessage)).toBeNull();
+      expect(queryByText(expiredLink.loginMessage)).toBeNull();
     });
 
     it('should display expired link page with failure alert after failed resend', () => {
@@ -111,6 +116,25 @@ describe('EmailConfirmation', () => {
       expect(queryByText(expiredLink.heading)).toBeVisible();
       expect(queryByText(expiredLink.successMessage)).toBeNull();
       expect(queryByText(expiredLink.failureMessage)).toBeVisible();
+      expect(queryByText(expiredLink.loginMessage)).toBeNull();
+    });
+
+    it('should display expired link page with login alert if not logged in', () => {
+      const { queryByText, getByRole } = render(
+        <EmailConfirmation
+          {...defaultProps}
+          isExpiredLink={true}
+          isLoggedIn={false}
+        />
+      );
+
+      expect(queryByText(expiredLink.heading)).toBeVisible();
+      expect(queryByText(expiredLink.successMessage)).toBeNull();
+      expect(queryByText(expiredLink.failureMessage)).toBeNull();
+      expect(queryByText(expiredLink.loginMessage)).toBeVisible();
+      expect(
+        getByRole('button', { name: expiredLink.resendButton })
+      ).toBeDisabled();
     });
   });
 });
