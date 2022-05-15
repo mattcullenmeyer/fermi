@@ -17,6 +17,7 @@ export const defaultProps: SignupProps = {
   onPasswordBlur: () => {},
   onFormSubmit: () => {},
   isLoading: false,
+  isSignupSuccess: false,
 };
 
 export const populatedProps: SignupProps = {

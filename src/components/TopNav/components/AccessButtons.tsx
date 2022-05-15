@@ -24,7 +24,10 @@ export const AccessButtons: React.FC = () => {
         </Button>
       </Box>
       <Box display="flex" alignItems="center" marginLeft={2}>
-        <Button variant="contained" onClick={() => history.push('/signup')}>
+        <Button
+          variant="contained"
+          onClick={() => history.push(setRedirectPath('/signup'))}
+        >
           {pages.signUp}
         </Button>
       </Box>

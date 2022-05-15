@@ -26,6 +26,7 @@ export const SignupContainer: React.FC = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [signupErrorMessage, setSignupErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignupSuccess, setIsSignupSuccess] = useState(false);
 
   const onEmailChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -116,7 +117,8 @@ export const SignupContainer: React.FC = () => {
     if (response.status === 201 && response.data) {
       setAuthCookies(response.data);
       dispatch(fetchUser());
-      history.push('/');
+      setIsLoading(false);
+      setIsSignupSuccess(true);
     } else {
       setSignupErrorMessage(words.signupErrorMessage);
       setIsLoading(false);
@@ -140,6 +142,7 @@ export const SignupContainer: React.FC = () => {
       onPasswordBlur={onPasswordBlur}
       onFormSubmit={onFormSubmit}
       isLoading={isLoading}
+      isSignupSuccess={isSignupSuccess}
     />
   );
 };

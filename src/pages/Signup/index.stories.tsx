@@ -56,3 +56,9 @@ SignupError.args = {
   ...populatedProps,
   signupErrorMessage: words.signupErrorMessage,
 };
+
+export const SignupSuccess = Template.bind({});
+SignupSuccess.args = {
+  ...defaultProps,
+  isSignupSuccess: true,
+};

@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import { SignupHeading } from './components/SignupHeading';
 import { SignupForm } from './components/SignupForm';
 import { SignupPromo } from './components/SignupPromo';
+import { SignupSuccessCard } from './components/SignupSuccessCard';
 // Other
 import './index.scss';
 
@@ -23,6 +24,7 @@ export interface SignupProps {
   onPasswordBlur: () => void;
   onFormSubmit: (event: FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
+  isSignupSuccess: boolean;
 }
 
 export const Signup: React.FC<SignupProps> = ({
@@ -41,7 +43,12 @@ export const Signup: React.FC<SignupProps> = ({
   onPasswordBlur,
   onFormSubmit,
   isLoading,
+  isSignupSuccess,
 }) => {
+  if (isSignupSuccess) {
+    return <SignupSuccessCard />;
+  }
+
   return (
     <Box className="signup-container">
       <Box

@@ -8,6 +8,7 @@ describe('Signup', () => {
   it('should not display any error messages', () => {
     const { queryByText } = render(<Signup {...defaultProps} />);
 
+    expect(queryByText(words.heading)).toBeVisible();
     expect(queryByText(words.invalidEmail)).toBeNull();
     expect(queryByText(words.emailUnavailable)).toBeNull();
     expect(queryByText(words.invalidUsername)).toBeNull();
@@ -15,6 +16,7 @@ describe('Signup', () => {
     expect(queryByText(words.invalidPassword)).toBeNull();
     expect(queryByText(words.signupErrorMessage)).toBeNull();
     expect(queryByText(words.passwordRequirement)).toBeVisible();
+    expect(queryByText(words.signupSuccessCard.heading)).toBeNull();
   });
 
   it('should call onFormSubmit when Create Account is clicked', () => {
@@ -93,5 +95,14 @@ describe('Signup', () => {
 
     expect(getByRole('button', { name: words.createAccount })).toBeEnabled();
     expect(queryByText(words.signupErrorMessage)).toBeVisible();
+  });
+
+  it('should display signup success card on successful signup', () => {
+    const { queryByText } = render(
+      <Signup {...defaultProps} isSignupSuccess={true} />
+    );
+
+    expect(queryByText(words.heading)).toBeNull();
+    expect(queryByText(words.signupSuccessCard.heading)).toBeVisible();
   });
 });

@@ -15,4 +15,10 @@ export const words = {
     'Sorry, we were unable to create your account. Please try again later.',
   promoHeading: 'Welcome to',
   promoDescription: 'Create your 100% free account now!',
+  signupSuccessCard: {
+    heading: 'Your account was created successfully!',
+    description:
+      'Please check your inbox for a link to verify your email address.',
+    buttonText: 'Continue',
+  },
 };

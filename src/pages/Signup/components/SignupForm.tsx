@@ -7,7 +7,9 @@ import { SignupProps } from '..';
 import { words } from '../words';
 import { WriteSelectors } from '../testSelectors';
 
-export const SignupForm: React.FC<SignupProps> = ({
+type SignupFormProps = Omit<SignupProps, 'isSignupSuccess'>;
+
+export const SignupForm: React.FC<SignupFormProps> = ({
   email,
   username,
   password,
