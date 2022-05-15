@@ -4,6 +4,7 @@ import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { words } from '../words';
 import { WriteSelectors } from '../testSelectors';
+import { setRedirectPath } from '../../../utils/setRedirectPath';
 
 const { pages } = words;
 
@@ -33,12 +34,12 @@ export const PageMenu: React.FC<PageMenuProps> = ({ isLoggedIn }) => {
 
   const onClickLogIn = () => {
     handleCloseMenu();
-    history.push('/login');
+    history.push(setRedirectPath('/login'));
   };
 
   const onClickSignUp = () => {
     handleCloseMenu();
-    history.push('/signup');
+    history.push(setRedirectPath('/signup'));
   };
 
   return (

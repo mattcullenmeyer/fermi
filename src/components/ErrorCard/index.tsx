@@ -7,13 +7,11 @@ import { words } from './words';
 export interface ErrorCardProps {
   heading?: string;
   description?: string;
-  buttonText?: string;
 }
 
 export const ErrorCard: React.FC<ErrorCardProps> = ({
   heading = words.heading,
   description = words.description,
-  buttonText = words.buttonText,
 }) => {
   const errorIcon: React.ReactNode = (
     <ErrorOutlineIcon
@@ -29,7 +27,7 @@ export const ErrorCard: React.FC<ErrorCardProps> = ({
       sx={{ pt: 1, pr: 7, pb: 1, pl: 7 }}
       onClick={() => window.location.reload()}
     >
-      {buttonText}
+      {words.buttonText}
     </Button>
   );
 
