@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://app.staging.tinytrader.io",
+  "baseUrl": "http://127.0.0.1:8080",
   "defaultCommandTimeout": 10000,
   "retries": {
     "runMode": 2
