@@ -1,4 +1,4 @@
-name: production deployment
+name: staging deployment
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: staging
     timeout-minutes: 10
     steps:
       - name: Check out source code
